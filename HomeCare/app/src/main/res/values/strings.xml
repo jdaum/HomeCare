@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">HomeCare</string>
     <string name="action_settings">Settings</string>
+    <string name="new_info">Enter new information</string>
+    <string name="review_info">Review previous information</string>
+    <string name="profile">Patient profile</string>
 </resources>
