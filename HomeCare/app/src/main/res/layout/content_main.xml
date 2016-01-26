@@ -15,22 +15,25 @@
     <TextView android:id = "@+id/text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Welcome to HomeCare!" />
+        android:text="Welcome to HomeCare!"
+        android:textSize="32sp"
+        android:textStyle="bold"
+        android:layout_gravity="center" />
 
     <Button android:id="@+id/new_info"
-        android:layout_width="wrap_content"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_below = "@+id/text"
         android:text="@string/new_info" />
 
     <Button android:id="@+id/review_info"
-        android:layout_width="wrap_content"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_below = "@+id/new_info"
         android:text="@string/review_info" />
 
     <Button android:id="@+id/profile"
-        android:layout_width="wrap_content"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_below = "@+id/review_info"
         android:text="@string/profile" />
