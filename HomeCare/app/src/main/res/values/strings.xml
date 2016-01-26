@@ -4,4 +4,7 @@
     <string name="new_info">Enter new information</string>
     <string name="review_info">Review previous information</string>
     <string name="profile">Patient profile</string>
+    <string name="title_activity_enter_information">EnterInformation</string>
+    <string name="title_activity_patient_profile">PatientProfile</string>
+    <string name="title_activity_review_information">ReviewInformation</string>
 </resources>

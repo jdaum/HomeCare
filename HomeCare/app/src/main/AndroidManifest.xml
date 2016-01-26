@@ -18,6 +18,33 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".EnterInformation"
+            android:label="@string/title_activity_enter_information"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.whjt2_000.homecare.MainActivity" />
+        </activity>
+        <activity
+            android:name=".PatientProfile"
+            android:label="@string/title_activity_patient_profile"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.whjt2_000.homecare.MainActivity" />
+        </activity>
+        <activity
+            android:name=".ReviewInformation"
+            android:label="@string/title_activity_review_information"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.whjt2_000.homecare.MainActivity" />
+        </activity>
     </application>
 
 </manifest>

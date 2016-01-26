@@ -1,5 +1,6 @@
 package com.example.whjt2_000.homecare;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -48,5 +49,20 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public void enterInformation(View view){
+        Intent intent = new Intent(this, EnterInformation.class);
+        startActivity(intent);
+    }
+
+    public void reviewInformation(View view){
+        Intent intent = new Intent(this, ReviewInformation.class);
+        startActivity(intent);
+    }
+
+    public void patientProfile(View view){
+        Intent intent = new Intent(this, PatientProfile.class);
+        startActivity(intent);
     }
 }
