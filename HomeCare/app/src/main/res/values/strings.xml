@@ -7,4 +7,5 @@
     <string name="title_activity_enter_information">EnterInformation</string>
     <string name="title_activity_patient_profile">PatientProfile</string>
     <string name="title_activity_review_information">ReviewInformation</string>
+    <string name="title_activity_my_custom_adapter">MyCustomAdapter</string>
 </resources>
