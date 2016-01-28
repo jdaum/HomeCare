@@ -22,7 +22,7 @@ public final class Database extends SQLiteOpenHelper{
 
     /* Inner class that defines the table contents */
     public static abstract class DatabaseEntry implements BaseColumns {
-        public static final String TABLE_NAME = "stockanswers";
+        public static final String TABLE_NAME = "narrativenotes";
         public static final String COLUMN_NAME_ENTRY_ID = "entryid";
         public static final String COLUMN_NAME_BODYSYSTEM = "bodysystem";
         public static final String COLUMN_NAME_STOCKANSWER = "stockanswer";
