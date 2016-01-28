@@ -12,7 +12,7 @@ import android.view.MenuItem;
 
 public class MainActivity extends AppCompatActivity {
 
-    Database db = new Database(this);
+    DatabaseHelper db = new DatabaseHelper(this);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

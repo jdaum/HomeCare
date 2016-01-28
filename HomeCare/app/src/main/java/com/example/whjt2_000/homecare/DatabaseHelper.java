@@ -9,13 +9,13 @@ import android.provider.ContactsContract;
 /**
  * Created by jeanette on 28.01.16.
  */
-public final class Database extends SQLiteOpenHelper{
+public final class DatabaseHelper extends SQLiteOpenHelper{
 
     // If you change the database schema, you must increment the database version.
     public static final int DATABASE_VERSION = 1;
     public static final String DATABASE_NAME = "FeedReader.db";
 
-    public Database(Context context) {
+    public DatabaseHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
 
