@@ -28,8 +28,8 @@
                 android:value="com.example.whjt2_000.homecare.MainActivity" />
         </activity>
         <activity
-            android:name=".PatientProfile"
-            android:label="@string/title_activity_patient_profile"
+            android:name=".StockAnswerSetUp"
+            android:label="@string/title_activity_set_up"
             android:parentActivityName=".MainActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data

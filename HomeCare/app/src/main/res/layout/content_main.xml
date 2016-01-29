@@ -39,6 +39,6 @@
         android:layout_height="wrap_content"
         android:layout_below = "@+id/review_info"
         android:text="@string/profile"
-        android:onClick="patientProfile"/>
+        android:onClick="stockAnswerSetUp"/>
 
 </RelativeLayout>

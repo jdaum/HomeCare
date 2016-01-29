@@ -5,7 +5,8 @@
     <string name="review_info">Review previous information</string>
     <string name="profile">Patient profile</string>
     <string name="title_activity_enter_information">EnterInformation</string>
-    <string name="title_activity_patient_profile">PatientProfile</string>
+    <string name="title_activity_set_up">SetUp</string>
     <string name="title_activity_review_information">ReviewInformation</string>
     <string name="title_activity_my_custom_adapter">MyCustomAdapter</string>
+    <string name="new_stock_answer">Enter your new Stock Answer here.</string>
 </resources>

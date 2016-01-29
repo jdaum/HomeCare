@@ -1,5 +1,6 @@
 package com.example.whjt2_000.homecare;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -12,7 +13,7 @@ import android.view.MenuItem;
 
 public class MainActivity extends AppCompatActivity {
 
-    DatabaseHelper db = new DatabaseHelper(this);
+    DatabaseHelper db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,6 +21,9 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        //retrieve the database
+        db = DatabaseHelper.getInstance(MainActivity.this);
 
     }
 
@@ -55,8 +59,8 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void patientProfile(View view){
-        Intent intent = new Intent(this, PatientProfile.class);
+    public void stockAnswerSetUp(View view){
+        Intent intent = new Intent(this, StockAnswerSetUp.class);
         startActivity(intent);
     }
 }

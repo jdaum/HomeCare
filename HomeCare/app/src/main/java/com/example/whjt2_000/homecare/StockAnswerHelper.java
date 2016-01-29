@@ -10,24 +10,24 @@ import android.provider.ContactsContract;
 import java.util.Random;
 
 /**
- * Created by jeanette on 28.01.16.
+ * Created by jeanette on 29.01.16.
  */
-public final class DatabaseHelper extends SQLiteOpenHelper{
+public final class StockAnswerHelper extends SQLiteOpenHelper{
 
 
-    private static DatabaseHelper dbHelper;
+    private static StockAnswerHelper dbHelper;
 
     // If you change the database schema, you must increment the database version.
     public static final int DATABASE_VERSION = 1;
-    public static final String DATABASE_NAME = "PatientInformation.db";
+    public static final String DATABASE_NAME = "StockAnswer.db";
 
 
-    public static synchronized DatabaseHelper getInstance(Context context) {
+    public static synchronized StockAnswerHelper getInstance(Context context) {
 
         // Use the application context, which will ensure that you
         // don't accidentally leak an Activity's context.
         if (dbHelper == null) {
-            dbHelper = new DatabaseHelper(context);
+            dbHelper = new StockAnswerHelper(context);
         }
         return dbHelper;
     }
@@ -36,18 +36,16 @@ public final class DatabaseHelper extends SQLiteOpenHelper{
      * Constructor should be private to prevent direct instantiation.
      * make call to static method "getInstance()" instead.
      */
-    private DatabaseHelper(Context context) {
+    private StockAnswerHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
 
     /* Inner class that defines the table contents */
     public static abstract class DatabaseEntry implements BaseColumns {
-        public static final String TABLE_NAME = "narrativenotes";
+        public static final String TABLE_NAME = "stockanswers";
         public static final String COLUMN_NAME_ENTRY_ID = "entryid";
         public static final String COLUMN_NAME_BODYSYSTEM = "bodysystem";
         public static final String COLUMN_NAME_STOCKANSWER = "stockanswer";
-        public static final String COLUMN_NAME_NURSE = "nursename";
-        public static final String COLUMN_NAME_DATE = "date";
     }
 
     private static final String TEXT_TYPE = " TEXT";
@@ -58,10 +56,8 @@ public final class DatabaseHelper extends SQLiteOpenHelper{
             "CREATE TABLE " + DatabaseEntry.TABLE_NAME + " (" +
                     DatabaseEntry._ID + " INTEGER PRIMARY KEY," +
                     DatabaseEntry.COLUMN_NAME_ENTRY_ID + TEXT_TYPE + COMMA_SEP +
-                    DatabaseEntry.COLUMN_NAME_NURSE + TEXT_TYPE + COMMA_SEP +
                     DatabaseEntry.COLUMN_NAME_BODYSYSTEM + TEXT_TYPE + COMMA_SEP +
-                    DatabaseEntry.COLUMN_NAME_STOCKANSWER + TEXT_TYPE + COMMA_SEP +
-                    DatabaseEntry.COLUMN_NAME_DATE + TEXT_TYPE +
+                    DatabaseEntry.COLUMN_NAME_STOCKANSWER + TEXT_TYPE +
                     " )";
 
     private static final String SQL_DELETE_ENTRIES =
@@ -96,8 +92,6 @@ public final class DatabaseHelper extends SQLiteOpenHelper{
         values.put(DatabaseEntry.COLUMN_NAME_ENTRY_ID, new Random().nextInt() + 1);
         values.put(DatabaseEntry.COLUMN_NAME_BODYSYSTEM, "Respiratory");
         values.put(DatabaseEntry.COLUMN_NAME_STOCKANSWER, stockanswer);
-        values.put(DatabaseEntry.COLUMN_NAME_NURSE, "Jane");
-        values.put(DatabaseEntry.COLUMN_NAME_DATE, "29.01.2016");
 
         long rowId;
         // insert book
@@ -108,6 +102,6 @@ public final class DatabaseHelper extends SQLiteOpenHelper{
 
         return rowId;
     }
-
+    
 
 }
