@@ -87,27 +87,4 @@ public final class DatabaseHelper extends SQLiteOpenHelper{
     }
 
 
-    public long addStockAnswer(String stockanswer){
-        // Gets the data repository in write mode
-        SQLiteDatabase db = dbHelper.getWritableDatabase();
-
-        // Create a new map of values, where column names are the keys
-        ContentValues values = new ContentValues();
-        values.put(DatabaseEntry.COLUMN_NAME_ENTRY_ID, new Random().nextInt() + 1);
-        values.put(DatabaseEntry.COLUMN_NAME_BODYSYSTEM, "Respiratory");
-        values.put(DatabaseEntry.COLUMN_NAME_STOCKANSWER, stockanswer);
-        values.put(DatabaseEntry.COLUMN_NAME_NURSE, "Jane");
-        values.put(DatabaseEntry.COLUMN_NAME_DATE, "29.01.2016");
-
-        long rowId;
-        // insert book
-        rowId = db.insert(DatabaseEntry.TABLE_NAME,null,values);
-
-        // close database transaction
-        db.close();
-
-        return rowId;
-    }
-
-
 }
