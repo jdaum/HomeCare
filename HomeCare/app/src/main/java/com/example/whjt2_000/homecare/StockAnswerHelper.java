@@ -2,11 +2,16 @@ package com.example.whjt2_000.homecare;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.provider.BaseColumns;
 import android.provider.ContactsContract;
+import android.util.Log;
 
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Random;
 
 /**
@@ -43,7 +48,7 @@ public final class StockAnswerHelper extends SQLiteOpenHelper{
     /* Inner class that defines the table contents */
     public static abstract class DatabaseEntry implements BaseColumns {
         public static final String TABLE_NAME = "stockanswers";
-        public static final String COLUMN_NAME_ENTRY_ID = "entryid";
+        //public static final String COLUMN_NAME_ENTRY_ID = "entryid";
         public static final String COLUMN_NAME_BODYSYSTEM = "bodysystem";
         public static final String COLUMN_NAME_STOCKANSWER = "stockanswer";
     }
@@ -52,10 +57,11 @@ public final class StockAnswerHelper extends SQLiteOpenHelper{
 
     private static final String COMMA_SEP = ",";
 
+    // set ID to autoincrement, COLUMN_NAME_ENTRY_ID not needed right now
     private static final String SQL_CREATE_ENTRIES =
             "CREATE TABLE " + DatabaseEntry.TABLE_NAME + " (" +
-                    DatabaseEntry._ID + " INTEGER PRIMARY KEY," +
-                    DatabaseEntry.COLUMN_NAME_ENTRY_ID + TEXT_TYPE + COMMA_SEP +
+                    DatabaseEntry._ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
+                    //DatabaseEntry.COLUMN_NAME_ENTRY_ID + TEXT_TYPE + COMMA_SEP +
                     DatabaseEntry.COLUMN_NAME_BODYSYSTEM + TEXT_TYPE + COMMA_SEP +
                     DatabaseEntry.COLUMN_NAME_STOCKANSWER + TEXT_TYPE +
                     " )";
@@ -82,14 +88,14 @@ public final class StockAnswerHelper extends SQLiteOpenHelper{
         onUpgrade(db, oldVersion, newVersion);
     }
 
-
+    // adds a new stock answer to the database
     public long addStockAnswer(String stockanswer){
         // Gets the data repository in write mode
         SQLiteDatabase db = dbHelper.getWritableDatabase();
 
         // Create a new map of values, where column names are the keys
         ContentValues values = new ContentValues();
-        values.put(DatabaseEntry.COLUMN_NAME_ENTRY_ID, new Random().nextInt() + 1);
+        //values.put(DatabaseEntry.COLUMN_NAME_ENTRY_ID, new Random().nextInt() + 1);
         values.put(DatabaseEntry.COLUMN_NAME_BODYSYSTEM, "Respiratory");
         values.put(DatabaseEntry.COLUMN_NAME_STOCKANSWER, stockanswer);
 
@@ -101,6 +107,30 @@ public final class StockAnswerHelper extends SQLiteOpenHelper{
         db.close();
 
         return rowId;
+    }
+
+    public ArrayList<String> getAllStockAnswers() {
+        ArrayList<String> stockanswers = new ArrayList();
+
+        // select book query
+        String query = "SELECT  * FROM " + StockAnswerHelper.DatabaseEntry.TABLE_NAME;
+
+        // get reference of the BookDB database
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+        Cursor cursor = db.rawQuery(query, null);
+
+        // parse all results
+        String tmp = "";
+        if (cursor.moveToFirst()) {
+            do {
+
+                tmp = cursor.getString(3);
+                Log.d("StockAnswerDatabaseTest", "getAllStockAnswers: " + tmp);
+                // Add book to books
+                stockanswers.add(tmp);
+            } while (cursor.moveToNext());
+        }
+        return stockanswers;
     }
     
 

@@ -39,8 +39,8 @@ public class StockAnswerSetUp extends AppCompatActivity {
 
         //generate list
         list = new ArrayList<String>();
-        list.add("The patient was asleep.");
-        list.add("Normal Heartrate.");
+        list = dbHelper.getAllStockAnswers();
+
 
         //read out stock answers here and add them to the list
 
@@ -69,6 +69,8 @@ public class StockAnswerSetUp extends AppCompatActivity {
                 // this line adds the data of your EditText and puts in your array
                 list.add(message);
 
+                SQLiteDatabase db2 = dbHelper.getWritableDatabase();
+                dbHelper.onUpgrade(db2,1,2);
                 // next thing you have to do is check if your adapter has changed
                 adapter.notifyDataSetChanged();
             }

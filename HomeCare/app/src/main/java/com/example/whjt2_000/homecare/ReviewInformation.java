@@ -36,7 +36,7 @@ public class ReviewInformation extends AppCompatActivity {
         date = (DatePicker) findViewById(R.id.datePicker);
 
         Calendar c = Calendar.getInstance();
-        
+
 
         curYear = c.get(Calendar.YEAR);
         curMonth = c.get(Calendar.MONTH);
