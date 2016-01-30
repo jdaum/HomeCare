@@ -9,4 +9,6 @@
     <string name="title_activity_review_information">ReviewInformation</string>
     <string name="title_activity_my_custom_adapter">MyCustomAdapter</string>
     <string name="new_stock_answer">Enter your new Stock Answer here.</string>
+    <string name="title_activity_reivew_date">ReivewDate</string>
+    <string name="title_activity_review_date">ReviewDate</string>
 </resources>

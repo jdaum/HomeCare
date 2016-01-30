@@ -45,6 +45,24 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.whjt2_000.homecare.MainActivity" />
         </activity>
+        <activity
+            android:name=".ReivewDate"
+            android:label="@string/title_activity_reivew_date"
+            android:parentActivityName=".ReviewInformation"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.whjt2_000.homecare.ReviewInformation" />
+        </activity>
+        <activity
+            android:name=".ReviewDate"
+            android:label="@string/title_activity_review_date"
+            android:parentActivityName=".ReviewInformation"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.whjt2_000.homecare.ReviewInformation" />
+        </activity>
     </application>
 
 </manifest>
