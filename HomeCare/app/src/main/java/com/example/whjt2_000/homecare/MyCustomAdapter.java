@@ -16,14 +16,17 @@ import java.util.ArrayList;
  */
 
 public class MyCustomAdapter extends BaseAdapter implements ListAdapter {
+
     private ArrayList<String> list = new ArrayList<String>();
     private Context context;
+    private StockAnswerHelper dbHelper;
 
 
-
-    public MyCustomAdapter(ArrayList<String> list, Context context) {
+    public MyCustomAdapter(ArrayList<String> list, Context context, StockAnswerHelper dbHelper) {
         this.list = list;
         this.context = context;
+        //retrieve the database
+        this.dbHelper = dbHelper;
     }
 
     @Override
@@ -62,7 +65,9 @@ public class MyCustomAdapter extends BaseAdapter implements ListAdapter {
             @Override
             public void onClick(View v) {
                 //do something
-                list.remove(position); //or some other task
+                String answer = list.get(position);
+                list.remove(position);
+                dbHelper.deleteStockAnswer(answer);
                 notifyDataSetChanged();
             }
         });

@@ -9,9 +9,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.Spinner;
 
 import java.util.ArrayList;
 
@@ -21,6 +23,7 @@ public class StockAnswerSetUp extends AppCompatActivity {
     ArrayList<String> list;
     MyCustomAdapter adapter;
     StockAnswerHelper dbHelper;
+    Spinner spinner;
 
 
     @Override
@@ -47,11 +50,15 @@ public class StockAnswerSetUp extends AppCompatActivity {
         Button add_btn= (Button)findViewById(R.id.add_btn);
 
         //instantiate custom adapter
-        adapter = new MyCustomAdapter(list, this);
+        adapter = new MyCustomAdapter(list, this, dbHelper);
 
         //handle listview and assign adapter
         ListView lView = (ListView)findViewById(R.id.my_listview);
         lView.setAdapter(adapter);
+
+        //handle spinner
+        spinner = (Spinner) findViewById(R.id.spinner);
+
 
         add_btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -61,16 +68,21 @@ public class StockAnswerSetUp extends AppCompatActivity {
                 EditText editText = (EditText) findViewById(R.id.new_stock_answer);
                 String message = editText.getText().toString();
 
-                long rowId = dbHelper.addStockAnswer(message);
+                String bodysystem = spinner.getSelectedItem().toString();
 
+                long rowId = dbHelper.addStockAnswer(bodysystem,message);
 
+                //TODO: remove after completion of prototype
                 Log.d("StockAnswerSetUp", "onClick:" + rowId);
 
                 // this line adds the data of your EditText and puts in your array
-                list.add(message);
+                list.add(bodysystem+": "+message);
 
-                SQLiteDatabase db2 = dbHelper.getWritableDatabase();
-                dbHelper.onUpgrade(db2,1,2);
+                // TODO: FOR DEBUGGING ONLY
+                //SQLiteDatabase db2 = dbHelper.getWritableDatabase();
+                //dbHelper.onUpgrade(db2, 1, 2);
+
+
                 // next thing you have to do is check if your adapter has changed
                 adapter.notifyDataSetChanged();
             }
@@ -78,5 +90,6 @@ public class StockAnswerSetUp extends AppCompatActivity {
 
 
     }
+
 
 }

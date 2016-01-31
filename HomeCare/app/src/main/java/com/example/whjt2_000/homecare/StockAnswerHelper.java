@@ -89,14 +89,14 @@ public final class StockAnswerHelper extends SQLiteOpenHelper{
     }
 
     // adds a new stock answer to the database
-    public long addStockAnswer(String stockanswer){
+    public long addStockAnswer(String bodysystem, String stockanswer){
         // Gets the data repository in write mode
         SQLiteDatabase db = dbHelper.getWritableDatabase();
 
         // Create a new map of values, where column names are the keys
         ContentValues values = new ContentValues();
         //values.put(DatabaseEntry.COLUMN_NAME_ENTRY_ID, new Random().nextInt() + 1);
-        values.put(DatabaseEntry.COLUMN_NAME_BODYSYSTEM, "Respiratory");
+        values.put(DatabaseEntry.COLUMN_NAME_BODYSYSTEM, bodysystem);
         values.put(DatabaseEntry.COLUMN_NAME_STOCKANSWER, stockanswer);
 
         long rowId;
@@ -112,10 +112,10 @@ public final class StockAnswerHelper extends SQLiteOpenHelper{
     public ArrayList<String> getAllStockAnswers() {
         ArrayList<String> stockanswers = new ArrayList();
 
-        // select book query
+        // select query
         String query = "SELECT  * FROM " + StockAnswerHelper.DatabaseEntry.TABLE_NAME;
 
-        // get reference of the BookDB database
+        // get reference of the database
         SQLiteDatabase db = dbHelper.getWritableDatabase();
         Cursor cursor = db.rawQuery(query, null);
 
@@ -123,14 +123,34 @@ public final class StockAnswerHelper extends SQLiteOpenHelper{
         String tmp = "";
         if (cursor.moveToFirst()) {
             do {
+                Log.d("String0", cursor.getString(0));
+                Log.d("String1", cursor.getString(1));
+                Log.d("String2", cursor.getString(2));
+                tmp = cursor.getString(1) + ": ";
+                tmp = tmp + cursor.getString(2);
 
-                tmp = cursor.getString(3);
-                Log.d("StockAnswerDatabaseTest", "getAllStockAnswers: " + tmp);
-                // Add book to books
+                // Add stockanswer to list
                 stockanswers.add(tmp);
             } while (cursor.moveToNext());
         }
         return stockanswers;
+    }
+
+    public void deleteStockAnswer(String answer){
+        String split[] = answer.split(":");
+        String bodysystem = split[0];
+        String stockanswer = split[1].substring(1);
+
+        //compute both parts of the SQL query
+        String fromquery = "DELETE FROM " + StockAnswerHelper.DatabaseEntry.TABLE_NAME;
+        String wherequery = " WHERE "+ StockAnswerHelper.DatabaseEntry.COLUMN_NAME_BODYSYSTEM + " = " + "'"+bodysystem+"'" +" AND "+ DatabaseEntry.COLUMN_NAME_STOCKANSWER + " = " + "'" +stockanswer+"' ;" ;
+
+        //concat the query
+        String query = fromquery + wherequery;
+
+        //retrieve the databse and execute the query
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+        db.execSQL(query);
     }
     
 
