@@ -22,5 +22,6 @@
         <item>Psych</item>
         <item>Integ</item>
     </string-array>
+    <string name="title_activity_review_date">ReviewDate</string>
 
 </resources>

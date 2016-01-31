@@ -21,8 +21,6 @@ import android.widget.Toast;
 import java.util.Calendar;
 
 public class ReviewInformation extends AppCompatActivity {
-
-    private int curYear, curMonth, curDay;
     DatePicker date;
 
 
@@ -33,14 +31,6 @@ public class ReviewInformation extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        date = (DatePicker) findViewById(R.id.datePicker);
-
-        Calendar c = Calendar.getInstance();
-
-
-        curYear = c.get(Calendar.YEAR);
-        curMonth = c.get(Calendar.MONTH);
-        curDay = c.get(Calendar.DAY_OF_MONTH);
 
         Button reviewButton = (Button) findViewById(R.id.button2);
         reviewButton.setOnClickListener(new View.OnClickListener(){
@@ -52,13 +42,14 @@ public class ReviewInformation extends AppCompatActivity {
     }
 
     public void enterInformation(View view){
+        date = (DatePicker) findViewById(R.id.datePicker);
+
         Intent intent = new Intent(this, ReviewDate.class);
-        intent.putExtra("year", curYear);
-        intent.putExtra("month", curMonth);
-        intent.putExtra("day", curDay);
+        intent.putExtra("year", date.getYear());
+        intent.putExtra("month", date.getMonth());
+        intent.putExtra("day", date.getDayOfMonth());
         startActivity(intent);
     }
 
 
 }
-//}

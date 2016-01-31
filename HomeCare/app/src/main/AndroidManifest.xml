@@ -45,15 +45,14 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.whjt2_000.homecare.MainActivity" />
         </activity>
-        <activity
-            android:name=".ReivewDate"
-            android:label="@string/title_activity_reivew_date"
-            android:parentActivityName=".ReviewInformation"
-            android:theme="@style/AppTheme.NoActionBar">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.whjt2_000.homecare.ReviewInformation" />
-        </activity>
+        <!--
+             ATTENTION: This was auto-generated to add Google Play services to your project for
+             App Indexing.  See https://g.co/AppIndexing/AndroidStudio for more information.
+        -->
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
+
         <activity
             android:name=".ReviewDate"
             android:label="@string/title_activity_review_date"
