@@ -100,7 +100,8 @@ public final class StockAnswerHelper extends SQLiteOpenHelper{
         values.put(DatabaseEntry.COLUMN_NAME_STOCKANSWER, stockanswer);
 
         long rowId;
-        // insert book
+
+        // insert values
         rowId = db.insert(DatabaseEntry.TABLE_NAME,null,values);
 
         // close database transaction

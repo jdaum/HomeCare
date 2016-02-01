@@ -12,33 +12,38 @@
     tools:context="com.example.whjt2_000.homecare.EnterInformation"
     tools:showIn="@layout/activity_enter_information2">
 
+
+    <Spinner
+        android:id="@+id/bodysystemspinner"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:drawSelectorOnTop="true"
+        android:entries="@array/bodysystem_array"
+        />
+
+    <EditText
+        android:id="@+id/infoText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/bodysystemspinner"/>
+
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Enter Info"
-        android:id="@+id/button"
-        android:layout_centerVertical="true"
+        android:id="@+id/enter_button"
+        android:layout_below="@+id/infoText"
         android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:onClick="enterInformation"/>
 
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/editText"
-        android:layout_alignRight="@+id/button"
-        android:layout_alignEnd="@+id/button"
-        android:layout_above="@+id/button"
-        android:layout_alignParentTop="true"
-        android:inputType="textMultiLine"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
 
     <ImageButton
-        android:id="@+id/button1"
+        android:id="@+id/voice_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/editText"
+        android:layout_below="@+id/infoText"
         android:layout_centerHorizontal="true"
         android:layout_alignParentLeft = "true"
+        android:layout_toRightOf="@+id/enter_button"
         android:src="@android:drawable/ic_btn_speak_now" />
 </RelativeLayout>

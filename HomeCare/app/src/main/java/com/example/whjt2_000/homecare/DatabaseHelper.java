@@ -7,6 +7,8 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.provider.BaseColumns;
 import android.provider.ContactsContract;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Random;
 
 /**
@@ -43,10 +45,10 @@ public final class DatabaseHelper extends SQLiteOpenHelper{
     /* Inner class that defines the table contents */
     public static abstract class DatabaseEntry implements BaseColumns {
         public static final String TABLE_NAME = "narrativenotes";
-        public static final String COLUMN_NAME_ENTRY_ID = "entryid";
+        //public static final String COLUMN_NAME_ENTRY_ID = "entryid";
+        public static final String COLUMN_NAME_NURSE = "nursename";
         public static final String COLUMN_NAME_BODYSYSTEM = "bodysystem";
         public static final String COLUMN_NAME_STOCKANSWER = "stockanswer";
-        public static final String COLUMN_NAME_NURSE = "nursename";
         public static final String COLUMN_NAME_DATE = "date";
     }
 
@@ -57,7 +59,7 @@ public final class DatabaseHelper extends SQLiteOpenHelper{
     private static final String SQL_CREATE_ENTRIES =
             "CREATE TABLE " + DatabaseEntry.TABLE_NAME + " (" +
                     DatabaseEntry._ID + " INTEGER PRIMARY KEY," +
-                    DatabaseEntry.COLUMN_NAME_ENTRY_ID + TEXT_TYPE + COMMA_SEP +
+                    //DatabaseEntry.COLUMN_NAME_ENTRY_ID + TEXT_TYPE + COMMA_SEP +
                     DatabaseEntry.COLUMN_NAME_NURSE + TEXT_TYPE + COMMA_SEP +
                     DatabaseEntry.COLUMN_NAME_BODYSYSTEM + TEXT_TYPE + COMMA_SEP +
                     DatabaseEntry.COLUMN_NAME_STOCKANSWER + TEXT_TYPE + COMMA_SEP +
@@ -86,5 +88,31 @@ public final class DatabaseHelper extends SQLiteOpenHelper{
         onUpgrade(db, oldVersion, newVersion);
     }
 
+    public long addPatientInformation(String bodysystem, String stockanswer){
+        // Gets the data repository in write mode
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+
+        //get the current data
+        Calendar c = Calendar.getInstance();
+        SimpleDateFormat df = new SimpleDateFormat("dd-MMM-yyyy HH:mm:ss");
+        String formattedDate = df.format(c.getTime());
+
+        // Create a new map of values, where column names are the keys
+        ContentValues values = new ContentValues();
+        values.put(DatabaseEntry.COLUMN_NAME_NURSE,"Jane");
+        values.put(DatabaseEntry.COLUMN_NAME_BODYSYSTEM, bodysystem);
+        values.put(DatabaseEntry.COLUMN_NAME_STOCKANSWER, stockanswer);
+        values.put(DatabaseEntry.COLUMN_NAME_DATE,formattedDate);
+
+        long rowId;
+
+        // insert values
+        rowId = db.insert(DatabaseEntry.TABLE_NAME,null,values);
+
+        // close database transaction
+        db.close();
+
+        return rowId;
+    }
 
 }
