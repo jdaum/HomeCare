@@ -74,6 +74,7 @@ public class EnterInformation extends AppCompatActivity {
             spokenText = results.get(0);
             EditText notes = (EditText) this.findViewById(R.id.infoText);
             notes.setText(notes.getText() + spokenText);
+
             //TODO: DEBUGGING ONLY
             Log.d("EnterInfoFromVoice",spokenText);
 
@@ -81,6 +82,7 @@ public class EnterInformation extends AppCompatActivity {
             String bodysystem = spinner.getSelectedItem().toString();
 
             //add the patient information to the database
+            // TODO: change spokenText to notes.get.text()
             long rowId = dbHelper.addPatientInformation(bodysystem, spokenText);
 
             //TODO: DEBUGGING ONLY
