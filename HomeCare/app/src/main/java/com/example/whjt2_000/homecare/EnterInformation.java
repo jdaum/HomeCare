@@ -73,7 +73,7 @@ public class EnterInformation extends AppCompatActivity {
                     RecognizerIntent.EXTRA_RESULTS);
             spokenText = results.get(0);
             EditText notes = (EditText) this.findViewById(R.id.infoText);
-            notes.setText(notes.getText() + spokenText);
+            notes.setText(notes.getText() + spokenText + " ");
 
             //TODO: DEBUGGING ONLY
             Log.d("EnterInfoFromVoice",spokenText);
@@ -91,7 +91,7 @@ public class EnterInformation extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
     }
 
-    
+
     public void enterInformation(View view){
         // get the information from the edittext field
         EditText notes = (EditText) this.findViewById(R.id.infoText);
