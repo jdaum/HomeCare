@@ -6,7 +6,7 @@ import android.app.Application;
  * Created by jeanette on 02.02.16.
  */
 public class User extends Application{
-    private String name = "Your Name";
+    private String name = "";
 
     public void setName(String name){this.name = name;}
     public String getName(){
