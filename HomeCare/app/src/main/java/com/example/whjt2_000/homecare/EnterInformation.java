@@ -72,6 +72,8 @@ public class EnterInformation extends AppCompatActivity {
             List<String> results = data.getStringArrayListExtra(
                     RecognizerIntent.EXTRA_RESULTS);
             spokenText = results.get(0);
+            EditText notes = (EditText) this.findViewById(R.id.infoText);
+            notes.setText(notes.getText() + spokenText);
             //TODO: DEBUGGING ONLY
             Log.d("EnterInfoFromVoice",spokenText);
 
