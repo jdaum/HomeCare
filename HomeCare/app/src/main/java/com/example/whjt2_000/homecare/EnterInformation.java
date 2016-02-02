@@ -91,7 +91,7 @@ public class EnterInformation extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
     }
 
-
+    
     public void enterInformation(View view){
         // get the information from the edittext field
         EditText notes = (EditText) this.findViewById(R.id.infoText);
