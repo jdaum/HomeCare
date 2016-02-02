@@ -17,13 +17,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_above="@+id/login"
-        android:text="Please sign in for your session:" />
+        android:text="Please sign in with your name:" />
 
     <EditText
         android:id="@+id/login"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_above="@+id/new_info"
+        android:singleLine="true"
         android:saveEnabled="false" />
 
     <Button android:id="@+id/new_info"
