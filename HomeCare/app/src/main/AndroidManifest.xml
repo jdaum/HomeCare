@@ -3,6 +3,7 @@
     package="com.example.whjt2_000.homecare">
 
     <application
+        android:name="com.example.whjt2_000.homecare.User"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"

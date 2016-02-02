@@ -12,27 +12,33 @@
     tools:context="com.example.whjt2_000.homecare.MainActivity"
     tools:showIn="@layout/activity_main">
 
-    <TextView android:id = "@+id/text"
+    <TextView
+        android:id="@+id/welcomemessage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Welcome to HomeCare!"
-        android:textSize="32sp"
-        android:textStyle="bold"
-        android:layout_gravity="center" />
+        android:layout_above="@+id/login"
+        android:text="Please sign in for your session:" />
+
+    <EditText
+        android:id="@+id/login"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/new_info"
+        android:saveEnabled="false" />
 
     <Button android:id="@+id/new_info"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_below = "@+id/text"
+        android:layout_above="@+id/review_info"
         android:text="@string/new_info"
-        android:onClick="enterInformation"/>
+        android:onClick="enterInformation" />
 
     <Button android:id="@+id/review_info"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_below = "@+id/new_info"
+        android:layout_centerInParent="true"
         android:text="@string/review_info"
-        android:onClick="reviewInformation"/>
+        android:onClick="reviewInformation" />
 
     <Button android:id="@+id/profile"
         android:layout_width="fill_parent"
