@@ -12,7 +12,6 @@
     tools:context="com.example.whjt2_000.homecare.EnterInformation"
     tools:showIn="@layout/activity_enter_information2">
 
-
     <Spinner
         android:id="@+id/bodysystemspinner"
         android:layout_width="fill_parent"
@@ -21,29 +20,36 @@
         android:entries="@array/bodysystem_array"
         />
 
-    <EditText
-        android:id="@+id/infoText"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/bodysystemspinner"/>
-
-    <Button
+    <ListView android:id="@+id/listView1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Enter Info"
-        android:id="@+id/enter_button"
-        android:layout_below="@+id/infoText"
-        android:layout_alignParentRight="true"
-        android:onClick="enterInformation"/>
+        android:layout_below = "@+id/bodysystemspinner"
+        />
+
+        <EditText
+            android:id="@+id/infoText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/listView1"/>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Enter Info"
+            android:id="@+id/enter_button"
+            android:layout_below="@+id/infoText"
+            android:layout_alignParentRight="true"
+            android:onClick="enterInformation"/>
 
 
-    <ImageButton
-        android:id="@+id/voice_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/infoText"
-        android:layout_centerHorizontal="true"
-        android:layout_alignParentLeft = "true"
-        android:layout_toRightOf="@+id/enter_button"
-        android:src="@android:drawable/ic_btn_speak_now" />
+        <ImageButton
+            android:id="@+id/voice_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/infoText"
+            android:layout_centerHorizontal="true"
+            android:layout_alignParentLeft = "true"
+            android:layout_toRightOf="@+id/enter_button"
+            android:src="@android:drawable/ic_btn_speak_now" />
+
 </RelativeLayout>
