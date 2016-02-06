@@ -10,7 +10,8 @@ import android.widget.TextView;
 
 public class ReviewDate extends AppCompatActivity {
 
-    private int year, month, day;
+    private int startYear, startMonth, startDay;
+    private int endYear, endMonth, endDay;
     private TextView dateText;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,9 +21,14 @@ public class ReviewDate extends AppCompatActivity {
         setSupportActionBar(toolbar);
  
         Bundle b = getIntent().getExtras();
-        year = b.getInt("year");
-        month = b.getInt("month") + 1;
-        day = b.getInt("day");
+        startYear = b.getInt("startYear");
+        startMonth = b.getInt("startMonth")+1;
+        startDay = b.getInt("startDay");
+
+        endYear = b.getInt("endYear");
+        endMonth = b.getInt("endMonth")+1;
+        endDay = b.getInt("endDay");
+
 
         dateText = (TextView) findViewById(R.id.textView);
         showDate();
@@ -30,6 +36,7 @@ public class ReviewDate extends AppCompatActivity {
     }
 
     private void showDate(){
-        dateText.setText("Reivew information on " + new StringBuilder().append(day).append("/").append(month).append("/").append(year));
+        dateText.setText("Reivew information from " +  new StringBuilder().append(startDay).append("/").append(startMonth).append("/").append(startYear) +
+                            "\nto " + new StringBuilder().append(endDay).append("/").append(endMonth).append("/").append(endYear));
     }
 }

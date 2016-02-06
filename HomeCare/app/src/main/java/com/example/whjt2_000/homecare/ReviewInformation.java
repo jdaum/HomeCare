@@ -18,10 +18,20 @@ import android.widget.DatePicker;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 public class ReviewInformation extends AppCompatActivity {
-    DatePicker date;
+    CalendarView date;
+    int startYear;
+    int startMonth;
+    int startDay;
+    boolean setStartDay, setEndDay;
+    int endYear;
+    int endMonth;
+    int endDay;
+
+    String endDate;
 
 
     @Override
@@ -31,9 +41,23 @@ public class ReviewInformation extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        setEndDay = setStartDay = false;
 
-        Button reviewButton = (Button) findViewById(R.id.button2);
-        reviewButton.setOnClickListener(new View.OnClickListener(){
+        Button startButton = (Button) findViewById(R.id.StartButton);
+        startButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                setStartDate(v);
+            }
+        });
+        Button endButton = (Button) findViewById(R.id.EndButton);
+        endButton.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View v){
+                setEndDate(v);
+            }
+        });
+
+        Button reviewButton = (Button) findViewById(R.id.ReviewButton);
+        reviewButton.setOnClickListener( new View.OnClickListener(){
             public void onClick(View v){
                 enterInformation(v);
             }
@@ -41,14 +65,57 @@ public class ReviewInformation extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
-    public void enterInformation(View view){
-        date = (DatePicker) findViewById(R.id.datePicker);
+    public void setStartDate(View view){
 
-        Intent intent = new Intent(this, ReviewDate.class);
-        intent.putExtra("year", date.getYear());
-        intent.putExtra("month", date.getMonth());
-        intent.putExtra("day", date.getDayOfMonth());
-        startActivity(intent);
+        DatePicker d = (DatePicker) findViewById(R.id.calendarView);
+        startYear = d.getYear();
+        startMonth = d.getMonth();
+        startDay = d.getDayOfMonth();
+        setStartDay = true;
+    }
+
+    public void setEndDate(View view){
+        DatePicker d = (DatePicker) findViewById(R.id.calendarView);
+        endYear = d.getYear();
+        endMonth = d.getMonth();
+        endDay = d.getDayOfMonth();
+        if (setStartDay && !checkDate()) {
+            Toast.makeText(this, "Please select an end date after" +
+                            new StringBuilder().append(startDay).append("/").append(startMonth).append("/").append(startYear),
+                    Toast.LENGTH_SHORT).show();
+        } else
+            setEndDay = true;
+    }
+
+    private boolean checkDate(){
+        if (endYear < startYear)
+            return false;
+        else if(endYear > startYear)
+            return true;
+        if (endMonth < startMonth) return false;
+        else if(endMonth > startMonth) return true;
+
+        if (endDay < startDay) return false;
+        else return true;
+    }
+
+    public void enterInformation(View view){
+        if(!setStartDay || !setEndDay)
+            Toast.makeText(this, "Please select valid start and end date", Toast.LENGTH_SHORT).show();
+        else {
+
+            Intent intent = new Intent(this, ReviewDate.class);
+            intent.putExtra("startYear", startYear);
+            intent.putExtra("startMonth", startMonth);
+            intent.putExtra("startDay", startDay);
+
+            intent.putExtra("endYear", endYear);
+            intent.putExtra("endMonth", endMonth);
+            intent.putExtra("endDay", endDay);
+
+
+            startActivity(intent);
+        }
     }
 
 
