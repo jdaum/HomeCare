@@ -88,7 +88,7 @@ public class ReviewInformation extends AppCompatActivity {
         endMonth = d.getMonth();
         endDay = d.getDayOfMonth();
         if (setStartDay && !checkDate()) {
-            Toast.makeText(this, "Please select an end date after" +
+            Toast.makeText(this, "Please select an end date after " +
                             new StringBuilder().append(startDay).append("/").append(startMonth).append("/").append(startYear),
                     Toast.LENGTH_SHORT).show();
         } else {
