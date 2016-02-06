@@ -71,7 +71,15 @@ public class ReviewInformation extends AppCompatActivity {
         startYear = d.getYear();
         startMonth = d.getMonth();
         startDay = d.getDayOfMonth();
-        setStartDay = true;
+        if(setEndDay && !checkDate()){
+            Toast.makeText(this, "Please select an end date before " +
+                            new StringBuilder().append(endDay).append("/").append(endMonth).append("/").append(endYear),
+                    Toast.LENGTH_SHORT).show();
+        }else {
+            setStartDay = true;
+            Toast.makeText(this, "Selected " + new StringBuilder().append(startDay).append("/").append(startMonth).append("/").append(startYear) + " as start date",
+                    Toast.LENGTH_SHORT).show();
+        }
     }
 
     public void setEndDate(View view){
@@ -83,8 +91,11 @@ public class ReviewInformation extends AppCompatActivity {
             Toast.makeText(this, "Please select an end date after" +
                             new StringBuilder().append(startDay).append("/").append(startMonth).append("/").append(startYear),
                     Toast.LENGTH_SHORT).show();
-        } else
+        } else {
             setEndDay = true;
+            Toast.makeText(this, "Selected " + new StringBuilder().append(endDay).append("/").append(endMonth).append("/").append(endYear) + " as end date",
+                    Toast.LENGTH_SHORT).show();
+        }
     }
 
     private boolean checkDate(){
