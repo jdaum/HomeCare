@@ -153,6 +153,29 @@ public final class StockAnswerHelper extends SQLiteOpenHelper{
         SQLiteDatabase db = dbHelper.getWritableDatabase();
         db.execSQL(query);
     }
-    
+
+    public ArrayList<String> getStockAnswersForBodySystem(String bodysystem) {
+        ArrayList<String> stockanswers = new ArrayList();
+
+        // select query
+        String query = "SELECT  * FROM " + StockAnswerHelper.DatabaseEntry.TABLE_NAME + " WHERE " + DatabaseEntry.COLUMN_NAME_BODYSYSTEM + " = '" + bodysystem + "' ;";
+
+        // get reference of the database
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+        Cursor cursor = db.rawQuery(query, null);
+
+        // parse all results
+        String tmp = "";
+        if (cursor.moveToFirst()) {
+            do {
+                tmp = cursor.getString(1) + ": ";
+                tmp = tmp + cursor.getString(2);
+
+                // Add stockanswer to list
+                stockanswers.add(tmp);
+            } while (cursor.moveToNext());
+        }
+        return stockanswers;
+    }
 
 }

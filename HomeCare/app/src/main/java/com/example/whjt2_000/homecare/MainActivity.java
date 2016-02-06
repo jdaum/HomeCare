@@ -73,7 +73,6 @@ public class MainActivity extends AppCompatActivity {
         if (checkUserName()){
             Toast.makeText(this, "Please sign in with your name!", Toast.LENGTH_SHORT).show();
         }else{
-            Toast.makeText(this, "user:" + username.getName(), Toast.LENGTH_SHORT).show();
             Intent intent = new Intent(this, EnterInformation.class);
             startActivity(intent);
         }

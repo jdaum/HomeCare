@@ -2,12 +2,15 @@ package com.example.whjt2_000.homecare;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.provider.BaseColumns;
 import android.provider.ContactsContract;
+import android.util.Log;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Random;
 
@@ -88,7 +91,7 @@ public final class DatabaseHelper extends SQLiteOpenHelper{
         onUpgrade(db, oldVersion, newVersion);
     }
 
-    public long addPatientInformation(String bodysystem, String stockanswer){
+    public long addPatientInformation(String name, String bodysystem, String stockanswer){
         // Gets the data repository in write mode
         SQLiteDatabase db = dbHelper.getWritableDatabase();
 
@@ -96,10 +99,11 @@ public final class DatabaseHelper extends SQLiteOpenHelper{
         Calendar c = Calendar.getInstance();
         SimpleDateFormat df = new SimpleDateFormat("dd-MMM-yyyy HH:mm:ss");
         String formattedDate = df.format(c.getTime());
+        Log.d("DATE", formattedDate);
 
         // Create a new map of values, where column names are the keys
         ContentValues values = new ContentValues();
-        values.put(DatabaseEntry.COLUMN_NAME_NURSE,"Jane");
+        values.put(DatabaseEntry.COLUMN_NAME_NURSE,name);
         values.put(DatabaseEntry.COLUMN_NAME_BODYSYSTEM, bodysystem);
         values.put(DatabaseEntry.COLUMN_NAME_STOCKANSWER, stockanswer);
         values.put(DatabaseEntry.COLUMN_NAME_DATE,formattedDate);
@@ -114,5 +118,67 @@ public final class DatabaseHelper extends SQLiteOpenHelper{
 
         return rowId;
     }
+
+    public ArrayList<String> getPatientInformation() {
+        ArrayList<String> patientinfo = new ArrayList();
+
+        // select query
+        String query = "SELECT  * FROM " + StockAnswerHelper.DatabaseEntry.TABLE_NAME;
+
+        // get reference of the database
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+        Cursor cursor = db.rawQuery(query, null);
+
+        // parse all results
+        String tmp = "";
+        if (cursor.moveToFirst()) {
+            do {
+                Log.d("String0", cursor.getString(0));
+                Log.d("String1", cursor.getString(1));
+                Log.d("String2", cursor.getString(2));
+                Log.d("String2", cursor.getString(3));
+                tmp = cursor.getString(1) + ": ";
+                tmp = tmp + cursor.getString(2);
+
+                // Add stockanswer to list
+                patientinfo.add(tmp);
+            } while (cursor.moveToNext());
+        }
+        return patientinfo;
+    }
+
+    /**
+     * Not working yet
+     * @return
+     */
+    public ArrayList<String> getPatientInformationTimeBlock() {
+        ArrayList<String> patientinfo = new ArrayList();
+
+        // select query
+        String query = "SELECT  * FROM " + StockAnswerHelper.DatabaseEntry.TABLE_NAME;
+
+
+        // get reference of the database
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+        Cursor cursor = db.rawQuery(query, null);
+
+        // parse all results
+        String tmp = "";
+        if (cursor.moveToFirst()) {
+            do {
+                Log.d("String0", cursor.getString(0));
+                Log.d("String1", cursor.getString(1));
+                Log.d("String2", cursor.getString(2));
+                Log.d("String2", cursor.getString(3));
+                tmp = cursor.getString(1) + ": ";
+                tmp = tmp + cursor.getString(2);
+
+                // Add stockanswer to list
+                patientinfo.add(tmp);
+            } while (cursor.moveToNext());
+        }
+        return patientinfo;
+    }
+
 
 }

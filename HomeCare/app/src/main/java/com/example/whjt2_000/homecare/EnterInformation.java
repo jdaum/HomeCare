@@ -34,9 +34,12 @@ public class EnterInformation extends AppCompatActivity {
     private static final int SPEECH_REQUEST_CODE = 0;
 
     private DatabaseHelper  dbHelper;
+    private StockAnswerHelper saHelper;
     private String spokenText;
     private Spinner spinner;
     private MyCustomCheckboxAdapter dataAdapter = null;
+    private String name;
+    private ArrayList<String> selected = new ArrayList<String>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,12 +49,27 @@ public class EnterInformation extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        //handle database
+        //handle username
+        name = ((User) getApplicationContext()).getName();
+
+        //handle databases
         dbHelper = DatabaseHelper.getInstance(EnterInformation.this);
+        saHelper = StockAnswerHelper.getInstance(EnterInformation.this);
 
         //handle spinner
         spinner = (Spinner) findViewById(R.id.bodysystemspinner);
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
+                displayListView();
+            }
 
+            @Override
+            public void onNothingSelected(AdapterView<?> parentView) {
+                Toast.makeText(EnterInformation.this, "Please select a body system category!", Toast.LENGTH_SHORT).show();
+            }
+
+        });
 
         //set listener for the voice button
         ImageButton voice_btn = (ImageButton)findViewById(R.id.voice_button);
@@ -62,11 +80,8 @@ public class EnterInformation extends AppCompatActivity {
             }
         });
 
-
         //Generate list View from ArrayList
         displayListView();
-
-
     }
 
     // Create an intent that can start the Speech Recognizer activity
@@ -90,18 +105,15 @@ public class EnterInformation extends AppCompatActivity {
             EditText notes = (EditText) this.findViewById(R.id.infoText);
             notes.setText(notes.getText() + spokenText + " ");
 
-            //TODO: DEBUGGING ONLY
-            Log.d("EnterInfoFromVoice",spokenText);
-
-            //get the selected body system from the spinner
+            /*//get the selected body system from the spinner
             String bodysystem = spinner.getSelectedItem().toString();
 
             //add the patient information to the database
             // TODO: change spokenText to notes.get.text()
-            long rowId = dbHelper.addPatientInformation(bodysystem, spokenText);
+            long rowId = dbHelper.addPatientInformation(name,bodysystem, notes.getText().toString());
 
             //TODO: DEBUGGING ONLY
-            Log.d("EnterInformation","Databaserow: " +rowId);
+            Log.d("EnterInformation","Databaserow: " +rowId);*/
         }
         super.onActivityResult(requestCode, resultCode, data);
     }
@@ -116,25 +128,31 @@ public class EnterInformation extends AppCompatActivity {
         String bodysystem = spinner.getSelectedItem().toString();
 
         //add the patient information to the database
-        long rowId = dbHelper.addPatientInformation(bodysystem, message);
-
+        long rowId = dbHelper.addPatientInformation(name, bodysystem, message);
+        Log.d("Entry", name + " " + bodysystem + " " + message);
+        for (String s: selected){
+            //divide the stock answer
+            String split[] = s.split(":");
+            String bs = split[0];
+            String sa = split[1].substring(1);
+            //sanity check before inserting stock answer into patient database
+            if (bs.equals(bodysystem)){
+                dbHelper.addPatientInformation(name, bs, sa);
+            }
+        }
         //TODO: DEBUGGING ONLY
         Log.d("EnterInformation", "Databaserow: " + rowId);
-
     }
 
     private void displayListView() {
 
-        //Array list of countries
-        ArrayList<String> countryList = new ArrayList<String>();
-        countryList.add("Test1");
-        countryList.add("Test2");
-        countryList.add("Test3");
+        //Array list of stock answers for selected bodysystem
+        ArrayList<String> stockanswers = saHelper.getStockAnswersForBodySystem(spinner.getSelectedItem().toString());
 
 
         //create an ArrayAdaptar from the String Array
         dataAdapter = new MyCustomCheckboxAdapter(this,
-                R.layout.custom_checkboxlist, countryList);
+                R.layout.custom_checkboxlist, stockanswers);
         ListView listView = (ListView) findViewById(R.id.listView1);
         // Assign adapter to ListView
         listView.setAdapter(dataAdapter);
@@ -174,7 +192,7 @@ public class EnterInformation extends AppCompatActivity {
         public View getView(int position, View convertView, ViewGroup parent) {
 
             ViewHolder holder = null;
-            Log.v("ConvertView", String.valueOf(position));
+            //Log.v("ConvertView", String.valueOf(position));
 
             if (convertView == null) {
                 LayoutInflater vi = (LayoutInflater)getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -185,11 +203,16 @@ public class EnterInformation extends AppCompatActivity {
                 holder.name = (CheckBox) convertView.findViewById(R.id.checkBox1);
                 convertView.setTag(holder);
 
-                holder.name.setOnClickListener( new View.OnClickListener() {
+                holder.name.setOnClickListener(new View.OnClickListener() {
                     public void onClick(View v) {
-                        CheckBox cb = (CheckBox) v ;
-                        String country = (String) cb.getTag();
-                        Log.d("CustomCheckbox:", "is" + cb.getTag());
+                        CheckBox cb = (CheckBox) v;
+                        String sa = cb.getText().toString();
+                        if (cb.isChecked()) {
+                            selected.add(sa);
+                        }
+                        else {
+                            selected.remove(sa);
+                        }
                     }
                 });
             }
@@ -198,7 +221,8 @@ public class EnterInformation extends AppCompatActivity {
             }
 
             String stockanswer = stockanswers.get(position);
-            holder.code.setText(" (" + stockanswer + ")");
+            //TODO: currently more like a hack, check maybe later for a better implementation
+            holder.code.setText("");
             holder.name.setText(stockanswer);
             return convertView;
 
