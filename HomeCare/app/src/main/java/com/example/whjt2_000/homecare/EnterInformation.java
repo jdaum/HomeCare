@@ -140,8 +140,7 @@ public class EnterInformation extends AppCompatActivity {
                 dbHelper.addPatientInformation(name, bs, sa);
             }
         }
-        //TODO: DEBUGGING ONLY
-        Log.d("EnterInformation", "Databaserow: " + rowId);
+        Toast.makeText(getApplicationContext(),"Information saved for body system: " + bodysystem,Toast.LENGTH_LONG).show();
     }
 
     private void displayListView() {
