@@ -8,11 +8,16 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+
 public class ReviewDate extends AppCompatActivity {
 
     private int startYear, startMonth, startDay;
     private int endYear, endMonth, endDay;
     private TextView dateText;
+    private String[] monthString = {"Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec" };
+    String startDate, endDate;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -22,21 +27,34 @@ public class ReviewDate extends AppCompatActivity {
  
         Bundle b = getIntent().getExtras();
         startYear = b.getInt("startYear");
-        startMonth = b.getInt("startMonth")+1;
+        startMonth = b.getInt("startMonth");
         startDay = b.getInt("startDay");
+        startDate = dateToString(startYear, startMonth, startDay);
 
         endYear = b.getInt("endYear");
-        endMonth = b.getInt("endMonth")+1;
+        endMonth = b.getInt("endMonth");
         endDay = b.getInt("endDay");
-
+        endDate = dateToString(endYear, endMonth, endDay);
 
         dateText = (TextView) findViewById(R.id.textView);
         showDate();
+
+        ArrayList<String> res = new ArrayList<String>();
+        res = DatabaseHelper.getPatientInformationTimeBlock(startDate, endDate);
+
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
     private void showDate(){
-        dateText.setText("Reivew information from " +  new StringBuilder().append(startDay).append("/").append(startMonth).append("/").append(startYear) +
-                            "\nto " + new StringBuilder().append(endDay).append("/").append(endMonth).append("/").append(endYear));
+        dateText.setText("Reivew information from " + startDate + " to " + endDate);
+    }
+
+    private String dateToString(int year, int month, int day){
+        String date = "";
+        if(day < 10) date += "0";
+        date += Integer.toString(day);
+        date += "-" + monthString[month];
+        date += "-" + Integer.toString(year);
+        return date;
     }
 }

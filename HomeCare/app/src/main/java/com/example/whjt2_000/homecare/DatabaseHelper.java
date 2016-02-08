@@ -119,7 +119,7 @@ public final class DatabaseHelper extends SQLiteOpenHelper{
         return rowId;
     }
 
-    public ArrayList<String> getPatientInformation() {
+    public static ArrayList<String> getPatientInformation() {
         ArrayList<String> patientinfo = new ArrayList();
 
         // select query
@@ -151,17 +151,19 @@ public final class DatabaseHelper extends SQLiteOpenHelper{
      * Not working yet
      * @return
      */
-    public ArrayList<String> getPatientInformationTimeBlock() {
+    public static ArrayList<String> getPatientInformationTimeBlock(String start, String end) {
         ArrayList<String> patientinfo = new ArrayList();
 
         // select query
-        String query = "SELECT  * FROM " + StockAnswerHelper.DatabaseEntry.TABLE_NAME;
+        String query = "SELECT  * FROM " + DatabaseEntry.TABLE_NAME
+                        + "WHERE " + DatabaseEntry.COLUMN_NAME_DATE + " >= Datetime('" + start + "00:00:00') AND "
+                        + DatabaseEntry.COLUMN_NAME_DATE + " < Datetime('" + end + "00:00:00')";
 
 
         // get reference of the database
         SQLiteDatabase db = dbHelper.getWritableDatabase();
         Cursor cursor = db.rawQuery(query, null);
-
+/*
         // parse all results
         String tmp = "";
         if (cursor.moveToFirst()) {
@@ -176,7 +178,7 @@ public final class DatabaseHelper extends SQLiteOpenHelper{
                 // Add stockanswer to list
                 patientinfo.add(tmp);
             } while (cursor.moveToNext());
-        }
+        }*/
         return patientinfo;
     }
 
