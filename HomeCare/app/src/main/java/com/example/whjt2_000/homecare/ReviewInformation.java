@@ -69,7 +69,7 @@ public class ReviewInformation extends AppCompatActivity {
 
         DatePicker d = (DatePicker) findViewById(R.id.calendarView);
         startYear = d.getYear();
-        startMonth = d.getMonth();
+        startMonth = d.getMonth()+1;
         startDay = d.getDayOfMonth();
         if(setEndDay && !checkDate()){
             Toast.makeText(this, "Please select an end date before " +
@@ -85,7 +85,7 @@ public class ReviewInformation extends AppCompatActivity {
     public void setEndDate(View view){
         DatePicker d = (DatePicker) findViewById(R.id.calendarView);
         endYear = d.getYear();
-        endMonth = d.getMonth();
+        endMonth = d.getMonth()+1;
         endDay = d.getDayOfMonth();
         if (setStartDay && !checkDate()) {
             Toast.makeText(this, "Please select an end date after " +

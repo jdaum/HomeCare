@@ -53,9 +53,11 @@ public final class DatabaseHelper extends SQLiteOpenHelper{
         public static final String COLUMN_NAME_BODYSYSTEM = "bodysystem";
         public static final String COLUMN_NAME_STOCKANSWER = "stockanswer";
         public static final String COLUMN_NAME_DATE = "date";
+        public static final String COLUMN_NAME_TIME = "time";
     }
 
     private static final String TEXT_TYPE = " TEXT";
+    private static final String DATE_TYPE = " Datetime";
 
     private static final String COMMA_SEP = ",";
 
@@ -66,7 +68,8 @@ public final class DatabaseHelper extends SQLiteOpenHelper{
                     DatabaseEntry.COLUMN_NAME_NURSE + TEXT_TYPE + COMMA_SEP +
                     DatabaseEntry.COLUMN_NAME_BODYSYSTEM + TEXT_TYPE + COMMA_SEP +
                     DatabaseEntry.COLUMN_NAME_STOCKANSWER + TEXT_TYPE + COMMA_SEP +
-                    DatabaseEntry.COLUMN_NAME_DATE + TEXT_TYPE +
+                    DatabaseEntry.COLUMN_NAME_DATE + DATE_TYPE + COMMA_SEP +
+                    DatabaseEntry.COLUMN_NAME_TIME + TEXT_TYPE +
                     " )";
 
     private static final String SQL_DELETE_ENTRIES =
@@ -101,12 +104,18 @@ public final class DatabaseHelper extends SQLiteOpenHelper{
         String formattedDate = df.format(c.getTime());
         Log.d("DATE", formattedDate);
 
+        //split formattedDate into a date and a time
+        String[] res = formattedDate.split(" ");
+        String date = res[0];
+        String time = res[1];
+
         // Create a new map of values, where column names are the keys
         ContentValues values = new ContentValues();
         values.put(DatabaseEntry.COLUMN_NAME_NURSE,name);
         values.put(DatabaseEntry.COLUMN_NAME_BODYSYSTEM, bodysystem);
         values.put(DatabaseEntry.COLUMN_NAME_STOCKANSWER, stockanswer);
-        values.put(DatabaseEntry.COLUMN_NAME_DATE,formattedDate);
+        values.put(DatabaseEntry.COLUMN_NAME_DATE,date);
+        values.put(DatabaseEntry.COLUMN_NAME_TIME,time);
 
         long rowId;
 
@@ -155,15 +164,14 @@ public final class DatabaseHelper extends SQLiteOpenHelper{
         ArrayList<String> patientinfo = new ArrayList();
 
         // select query
-        String query = "SELECT  * FROM " + DatabaseEntry.TABLE_NAME
-                        + "WHERE " + DatabaseEntry.COLUMN_NAME_DATE + " >= Datetime('" + start + "00:00:00') AND "
-                        + DatabaseEntry.COLUMN_NAME_DATE + " < Datetime('" + end + "00:00:00')";
+        String query = "SELECT  * FROM " + DatabaseEntry.TABLE_NAME + " WHERE " + DatabaseEntry.COLUMN_NAME_DATE + " >= " + start + " AND "
+                        + DatabaseEntry.COLUMN_NAME_DATE + " < " + end + " ;";
 
 
         // get reference of the database
         SQLiteDatabase db = dbHelper.getWritableDatabase();
         Cursor cursor = db.rawQuery(query, null);
-/*
+
         // parse all results
         String tmp = "";
         if (cursor.moveToFirst()) {
@@ -171,14 +179,19 @@ public final class DatabaseHelper extends SQLiteOpenHelper{
                 Log.d("String0", cursor.getString(0));
                 Log.d("String1", cursor.getString(1));
                 Log.d("String2", cursor.getString(2));
-                Log.d("String2", cursor.getString(3));
-                tmp = cursor.getString(1) + ": ";
-                tmp = tmp + cursor.getString(2);
+                Log.d("String3", cursor.getString(3));
+                Log.d("String4", cursor.getString(4));
+                tmp = cursor.getString(1) + " | ";
+                tmp = tmp + cursor.getString(2) + " : ";
+                tmp += cursor.getString(3) + " ";
+                tmp += cursor.getString(4) + " ";
+                tmp += cursor.getString(5);
 
                 // Add stockanswer to list
                 patientinfo.add(tmp);
             } while (cursor.moveToNext());
-        }*/
+        }
+
         return patientinfo;
     }
 

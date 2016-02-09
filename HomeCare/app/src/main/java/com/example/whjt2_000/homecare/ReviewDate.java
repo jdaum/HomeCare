@@ -5,6 +5,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
@@ -39,22 +40,29 @@ public class ReviewDate extends AppCompatActivity {
         dateText = (TextView) findViewById(R.id.textView);
         showDate();
 
-        ArrayList<String> res = new ArrayList<String>();
-        res = DatabaseHelper.getPatientInformationTimeBlock(startDate, endDate);
+        ArrayList<String> patientresults = new ArrayList<String>();
+        patientresults = DatabaseHelper.getPatientInformationTimeBlock(startDate, endDate);
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        if (patientresults.size() == 0) {
+            Log.d("Returned information:", " empty");}
+        for (String s : patientresults){
+            dateText.setText(s + "\n");
+        }
     }
 
     private void showDate(){
-        dateText.setText("Reivew information from " + startDate + " to " + endDate);
+        dateText.setText("Review information from " + startDate + " to " + endDate);
     }
 
     private String dateToString(int year, int month, int day){
         String date = "";
         if(day < 10) date += "0";
         date += Integer.toString(day);
-        date += "-" + monthString[month];
+        if (month < 10) {date += "-0" + Integer.toString(month);}
+        else {date += "-"+Integer.toString(month);}
         date += "-" + Integer.toString(year);
+        Log.d("Date: ", date);
         return date;
     }
 }
