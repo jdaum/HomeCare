@@ -97,7 +97,7 @@ public final class DatabaseHelper extends SQLiteOpenHelper{
 
         //get the current data
         Calendar c = Calendar.getInstance();
-        SimpleDateFormat df = new SimpleDateFormat("dd-MMM-yyyy HH:mm:ss");
+        SimpleDateFormat df = new SimpleDateFormat("dd-MM-yyyy HH:mm");
         String formattedDate = df.format(c.getTime());
         Log.d("DATE", formattedDate);
 
