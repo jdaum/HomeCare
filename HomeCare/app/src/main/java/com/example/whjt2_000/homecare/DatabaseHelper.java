@@ -102,7 +102,6 @@ public final class DatabaseHelper extends SQLiteOpenHelper{
         Calendar c = Calendar.getInstance();
         SimpleDateFormat df = new SimpleDateFormat("dd-MM-yyyy HH:mm");
         String formattedDate = df.format(c.getTime());
-        Log.d("DATE", formattedDate);
 
         //split formattedDate into a date and a time
         String[] res = formattedDate.split(" ");
@@ -128,33 +127,6 @@ public final class DatabaseHelper extends SQLiteOpenHelper{
         return rowId;
     }
 
-    public static ArrayList<String> getPatientInformation() {
-        ArrayList<String> patientinfo = new ArrayList();
-
-        // select query
-        String query = "SELECT  * FROM " + StockAnswerHelper.DatabaseEntry.TABLE_NAME;
-
-        // get reference of the database
-        SQLiteDatabase db = dbHelper.getWritableDatabase();
-        Cursor cursor = db.rawQuery(query, null);
-
-        // parse all results
-        String tmp = "";
-        if (cursor.moveToFirst()) {
-            do {
-                Log.d("String0", cursor.getString(0));
-                Log.d("String1", cursor.getString(1));
-                Log.d("String2", cursor.getString(2));
-                Log.d("String2", cursor.getString(3));
-                tmp = cursor.getString(1) + ": ";
-                tmp = tmp + cursor.getString(2);
-
-                // Add stockanswer to list
-                patientinfo.add(tmp);
-            } while (cursor.moveToNext());
-        }
-        return patientinfo;
-    }
 
     /**
      * Not working yet
@@ -164,9 +136,9 @@ public final class DatabaseHelper extends SQLiteOpenHelper{
         ArrayList<String> patientinfo = new ArrayList();
 
         // select query
-        String query = "SELECT  * FROM " + DatabaseEntry.TABLE_NAME + " WHERE " + DatabaseEntry.COLUMN_NAME_DATE + " >= " + start + " AND "
-                        + DatabaseEntry.COLUMN_NAME_DATE + " < " + end + " ;";
-
+        String query = "SELECT  * FROM " + DatabaseHelper.DatabaseEntry.TABLE_NAME +
+                " WHERE " +  DatabaseHelper.DatabaseEntry.COLUMN_NAME_DATE + " >= \'" + start + "\' AND " +
+                DatabaseHelper.DatabaseEntry.COLUMN_NAME_DATE + " <= \'" + end + "\' ;";
 
         // get reference of the database
         SQLiteDatabase db = dbHelper.getWritableDatabase();
@@ -187,6 +159,7 @@ public final class DatabaseHelper extends SQLiteOpenHelper{
                 tmp += cursor.getString(4) + " ";
                 tmp += cursor.getString(5);
 
+                Log.d("Data", tmp);
                 // Add stockanswer to list
                 patientinfo.add(tmp);
             } while (cursor.moveToNext());

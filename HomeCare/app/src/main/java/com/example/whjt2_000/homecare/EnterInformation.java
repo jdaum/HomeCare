@@ -2,6 +2,8 @@ package com.example.whjt2_000.homecare;
 
 import android.content.Context;
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteOpenHelper;
 import android.os.Bundle;
 import android.speech.RecognizerIntent;
 import android.support.design.widget.FloatingActionButton;
@@ -128,8 +130,10 @@ public class EnterInformation extends AppCompatActivity {
         String bodysystem = spinner.getSelectedItem().toString();
 
         //add the patient information to the database
-        long rowId = dbHelper.addPatientInformation(name, bodysystem, message);
-        Log.d("Entry", name + " " + bodysystem + " " + message);
+        if (message.length() != 0){
+            dbHelper.addPatientInformation(name, bodysystem, message);
+            Log.d("Entry", name + " " + bodysystem + " " + message);
+        }
         for (String s: selected){
             //divide the stock answer
             String split[] = s.split(":");

@@ -44,11 +44,14 @@ public class ReviewDate extends AppCompatActivity {
         patientresults = DatabaseHelper.getPatientInformationTimeBlock(startDate, endDate);
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        String tmp ="";
         if (patientresults.size() == 0) {
             Log.d("Returned information:", " empty");}
         for (String s : patientresults){
-            dateText.setText(s + "\n");
+           tmp += s + "\n";
         }
+
+        dateText.setText(tmp);
     }
 
     private void showDate(){
@@ -62,7 +65,6 @@ public class ReviewDate extends AppCompatActivity {
         if (month < 10) {date += "-0" + Integer.toString(month);}
         else {date += "-"+Integer.toString(month);}
         date += "-" + Integer.toString(year);
-        Log.d("Date: ", date);
         return date;
     }
 }
