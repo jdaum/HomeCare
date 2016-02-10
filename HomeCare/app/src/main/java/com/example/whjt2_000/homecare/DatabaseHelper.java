@@ -148,18 +148,12 @@ public final class DatabaseHelper extends SQLiteOpenHelper{
         String tmp = "";
         if (cursor.moveToFirst()) {
             do {
-                Log.d("String0", cursor.getString(0));
-                Log.d("String1", cursor.getString(1));
-                Log.d("String2", cursor.getString(2));
-                Log.d("String3", cursor.getString(3));
-                Log.d("String4", cursor.getString(4));
                 tmp = cursor.getString(1) + " | ";
                 tmp = tmp + cursor.getString(2) + " : ";
                 tmp += cursor.getString(3) + " ";
                 tmp += cursor.getString(4) + " ";
                 tmp += cursor.getString(5);
 
-                Log.d("Data", tmp);
                 // Add stockanswer to list
                 patientinfo.add(tmp);
             } while (cursor.moveToNext());
