@@ -41,10 +41,18 @@
         android:text="@string/review_info"
         android:onClick="reviewInformation" />
 
+    <Button android:id="@+id/search_body_sys"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:text="@string/search_body_sys"
+        android:layout_below ="@id/review_info"
+        android:onClick="reviewInformationByDate" />
+
     <Button android:id="@+id/profile"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_below = "@+id/review_info"
+        android:layout_below = "@+id/search_body_sys"
         android:text="@string/profile"
         android:onClick="stockAnswerSetUp"/>
 

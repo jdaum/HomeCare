@@ -1,12 +1,14 @@
 <resources>
     <string name="app_name">Welcome to HomeCare!</string>
     <string name="action_settings">Settings</string>
-    <string name="new_info">Enter new information</string>
-    <string name="review_info">Review previous information</string>
-    <string name="profile">Set Up</string>
-    <string name="title_activity_enter_information">Enter Patient Information</string>
-    <string name="title_activity_set_up">Set Up</string>
-    <string name="title_activity_review_information">Review Patient Information</string>
+    <string name="new_info">Save information</string>
+    <string name="review_info">Search by date</string>
+    <string name="search_body_sys"> Search by body system</string>
+    <string name="profile">Set Up stock answer</string>
+    <string name="title_activity_enter_information">Save Patient Information</string>
+    <string name="title_activity_set_up">Set Up Stock Answers</string>
+    <string name="title_activity_review_information">Search By Date</string>
+    <string name="title_activity_search_body_sys">Search By Body System</string>
     <string name="title_activity_my_custom_adapter">MyCustomAdapter</string>
     <string name="new_stock_answer">Enter your new Stock Answer.</string>
     <string-array name="bodysystem_array">

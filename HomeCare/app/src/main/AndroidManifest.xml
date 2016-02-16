@@ -4,6 +4,7 @@
 
     <application
         android:name="com.example.whjt2_000.homecare.User"
+        android:screenOrientation="portrait"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -11,6 +12,7 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".MainActivity"
+            android:screenOrientation="portrait"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
@@ -21,6 +23,7 @@
         </activity>
         <activity
             android:name=".EnterInformation"
+            android:screenOrientation="portrait"
             android:label="@string/title_activity_enter_information"
             android:parentActivityName=".MainActivity"
             android:theme="@style/AppTheme.NoActionBar">
@@ -30,6 +33,7 @@
         </activity>
         <activity
             android:name=".StockAnswerSetUp"
+            android:screenOrientation="portrait"
             android:label="@string/title_activity_set_up"
             android:parentActivityName=".MainActivity"
             android:theme="@style/AppTheme.NoActionBar">
@@ -39,6 +43,7 @@
         </activity>
         <activity
             android:name=".ReviewInformation"
+            android:screenOrientation="portrait"
             android:label="@string/title_activity_review_information"
             android:parentActivityName=".MainActivity"
             android:theme="@style/AppTheme.NoActionBar">
@@ -56,6 +61,7 @@
 
         <activity
             android:name=".ReviewDate"
+            android:screenOrientation="portrait"
             android:label="@string/title_activity_review_date"
             android:parentActivityName=".ReviewInformation"
             android:theme="@style/AppTheme.NoActionBar">
