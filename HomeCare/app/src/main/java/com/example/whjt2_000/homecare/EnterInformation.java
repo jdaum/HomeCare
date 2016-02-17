@@ -123,6 +123,10 @@ public class EnterInformation extends AppCompatActivity {
         //get the selected body system from the spinner
         String bodysystem = spinner.getSelectedItem().toString();
 
+        if (message.length()== 0 && selected.size()==0) {
+            Toast.makeText(getApplicationContext(),"Please enter patient information.",Toast.LENGTH_LONG).show();
+        }
+
         //add the patient information to the database
         if (message.length() != 0){
             dbHelper.addPatientInformation(name, bodysystem, message);
@@ -143,9 +147,6 @@ public class EnterInformation extends AppCompatActivity {
             selected.clear();
             Log.d("selected.size", Integer.toString(selected.size()));
             Toast.makeText(getApplicationContext(),"Information saved for body system: " + bodysystem+".",Toast.LENGTH_LONG).show();
-        }
-        if (message.length()== 0 && selected.size()==0) {
-            Toast.makeText(getApplicationContext(),"Please enter patient information.",Toast.LENGTH_LONG).show();
         }
     }
 
