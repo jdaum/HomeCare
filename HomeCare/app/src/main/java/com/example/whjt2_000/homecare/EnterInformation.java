@@ -107,15 +107,6 @@ public class EnterInformation extends AppCompatActivity {
             EditText notes = (EditText) this.findViewById(R.id.infoText);
             notes.setText(notes.getText() + spokenText + " ");
 
-            /*//get the selected body system from the spinner
-            String bodysystem = spinner.getSelectedItem().toString();
-
-            //add the patient information to the database
-            // TODO: change spokenText to notes.get.text()
-            long rowId = dbHelper.addPatientInformation(name,bodysystem, notes.getText().toString());
-
-            //TODO: DEBUGGING ONLY
-            Log.d("EnterInformation","Databaserow: " +rowId);*/
         }
         super.onActivityResult(requestCode, resultCode, data);
     }
@@ -132,19 +123,24 @@ public class EnterInformation extends AppCompatActivity {
         //add the patient information to the database
         if (message.length() != 0){
             dbHelper.addPatientInformation(name, bodysystem, message);
-            Log.d("Entry", name + " " + bodysystem + " " + message);
+            Toast.makeText(getApplicationContext(),"Information saved for body system: " + bodysystem+".",Toast.LENGTH_LONG).show();
         }
-        for (String s: selected){
-            //divide the stock answer
-            String split[] = s.split(":");
-            String bs = split[0];
-            String sa = split[1].substring(1);
-            //sanity check before inserting stock answer into patient database
-            if (bs.equals(bodysystem)){
-                dbHelper.addPatientInformation(name, bs, sa);
+        if (selected.size()!= 0){
+            for (String s: selected){
+                //divide the stock answer
+                String split[] = s.split(":");
+                String bs = split[0];
+                String sa = split[1].substring(1);
+                //sanity check before inserting stock answer into patient database
+                if (bs.equals(bodysystem)){
+                    dbHelper.addPatientInformation(name, bs, sa);
+                }
             }
+            Toast.makeText(getApplicationContext(),"Information saved for body system: " + bodysystem+".",Toast.LENGTH_LONG).show();
         }
-        Toast.makeText(getApplicationContext(),"Information saved for body system: " + bodysystem,Toast.LENGTH_LONG).show();
+        if (message.length()== 0 && selected.size()==0) {
+            Toast.makeText(getApplicationContext(),"Please enter patient information.",Toast.LENGTH_LONG).show();
+        }
     }
 
     private void displayListView() {

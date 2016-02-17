@@ -31,9 +31,6 @@ public class ReviewInformation extends AppCompatActivity {
     int endMonth;
     int endDay;
 
-    String endDate;
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -73,11 +70,11 @@ public class ReviewInformation extends AppCompatActivity {
         startDay = d.getDayOfMonth();
         if(setEndDay && !checkDate()){
             Toast.makeText(this, "Please select an end date before " +
-                            new StringBuilder().append(endDay).append("/").append(endMonth).append("/").append(endYear),
+                            new StringBuilder().append(endDay).append("/").append(endMonth).append("/").append(endYear).append("."),
                     Toast.LENGTH_SHORT).show();
         }else {
             setStartDay = true;
-            Toast.makeText(this, "Selected " + new StringBuilder().append(startDay).append("/").append(startMonth).append("/").append(startYear) + " as start date",
+            Toast.makeText(this, "Selected " + new StringBuilder().append(startDay).append("/").append(startMonth).append("/").append(startYear) + " as start date.",
                     Toast.LENGTH_SHORT).show();
         }
     }
@@ -89,11 +86,11 @@ public class ReviewInformation extends AppCompatActivity {
         endDay = d.getDayOfMonth();
         if (setStartDay && !checkDate()) {
             Toast.makeText(this, "Please select an end date after " +
-                            new StringBuilder().append(startDay).append("/").append(startMonth).append("/").append(startYear),
+                            new StringBuilder().append(startDay).append("/").append(startMonth).append("/").append(startYear).append("."),
                     Toast.LENGTH_SHORT).show();
         } else {
             setEndDay = true;
-            Toast.makeText(this, "Selected " + new StringBuilder().append(endDay).append("/").append(endMonth).append("/").append(endYear) + " as end date",
+            Toast.makeText(this, "Selected " + new StringBuilder().append(endDay).append("/").append(endMonth).append("/").append(endYear) + " as end date.",
                     Toast.LENGTH_SHORT).show();
         }
     }
@@ -112,7 +109,7 @@ public class ReviewInformation extends AppCompatActivity {
 
     public void enterInformation(View view){
         if(!setStartDay || !setEndDay)
-            Toast.makeText(this, "Please select valid start and end date", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Please select valid start and end date.", Toast.LENGTH_SHORT).show();
         else {
 
             Intent intent = new Intent(this, ReviewDate.class);

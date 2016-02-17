@@ -8,6 +8,7 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -16,8 +17,8 @@ public class ReviewDate extends AppCompatActivity {
     private int startYear, startMonth, startDay;
     private int endYear, endMonth, endDay;
     private TextView dateText;
-    private String[] monthString = {"Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec" };
-    String startDate, endDate;
+    private DatabaseHelper  dbHelper;
+    private String startDate, endDate;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,6 +26,7 @@ public class ReviewDate extends AppCompatActivity {
         setContentView(R.layout.activity_review_date);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
  
         Bundle b = getIntent().getExtras();
         startYear = b.getInt("startYear");
@@ -40,13 +42,13 @@ public class ReviewDate extends AppCompatActivity {
         dateText = (TextView) findViewById(R.id.textView);
         showDate();
 
-        ArrayList<String> patientresults = new ArrayList<String>();
-        patientresults = DatabaseHelper.getPatientInformationTimeBlock(startDate, endDate);
+        dbHelper = DatabaseHelper.getInstance(ReviewDate.this);
+        ArrayList<String> patientresults = dbHelper.getPatientInformationTimeBlock(startDate, endDate);
 
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         String tmp =(String)dateText.getText() + "\n";
         if (patientresults.size() == 0) {
-            Log.d("Returned information:", " empty");}
+            Toast.makeText(this, "No information saved for this time.",
+                    Toast.LENGTH_SHORT).show();}
         for (String s : patientresults){
            tmp += s + "\n";
         }
@@ -55,7 +57,7 @@ public class ReviewDate extends AppCompatActivity {
     }
 
     private void showDate(){
-        dateText.setText("Review information from " + startDate + " to " + endDate);
+        dateText.setText("Review information from " + startDate + " to " + endDate + "\n");
     }
 
     private String dateToString(int year, int month, int day){

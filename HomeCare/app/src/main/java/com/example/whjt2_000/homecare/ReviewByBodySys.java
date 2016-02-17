@@ -26,11 +26,11 @@ import java.util.ArrayList;
 
 public class ReviewByBodySys extends AppCompatActivity {
 
-    ArrayList<String> bodySysAns;
-    StockAnswerHelper dbHelper;
-    Spinner spinner;
-    String bodySystem;
-    TextView textView;
+    private ArrayList<String> bodySysAns;
+    private Spinner spinner;
+    private String bodySystem;
+    private TextView textView;
+    private DatabaseHelper  dbHelper;
 
 
     @Override
@@ -43,6 +43,8 @@ public class ReviewByBodySys extends AppCompatActivity {
         //show the back button in the tool bar
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
+
+        dbHelper = DatabaseHelper.getInstance(ReviewByBodySys.this);
 
         spinner = (Spinner) findViewById(R.id.spinner);
 
@@ -59,14 +61,13 @@ public class ReviewByBodySys extends AppCompatActivity {
     private void showReviewInfo(View view){
 
         //generate list
-        bodySysAns = new ArrayList<String>();
-        bodySysAns = DatabaseHelper.getPatientInformationForBodySystem(bodySystem);
+        bodySysAns = dbHelper.getPatientInformationForBodySystem(bodySystem);
 
         textView = (TextView)findViewById(R.id.my_textview);
 
         String tmp =(String)textView.getText() + "\n";
         if (bodySysAns.size() == 0) {
-            Toast.makeText(this, "There's no information about " + bodySystem, Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "There's no information about " + bodySystem + ".", Toast.LENGTH_SHORT).show();
         }
         for (String s : bodySysAns){
             tmp += s + "\n";
