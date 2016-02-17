@@ -70,7 +70,7 @@ public class StockAnswerSetUp extends AppCompatActivity {
                 String message = editText.getText().toString();
 
                 if(message.length() == 0){
-                    Toast.makeText(StockAnswerSetUp.this, "Please enter new stock answers!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(StockAnswerSetUp.this, "Please enter a new stock answer.", Toast.LENGTH_SHORT).show();
                 } else {
 
                     String bodysystem = spinner.getSelectedItem().toString();
