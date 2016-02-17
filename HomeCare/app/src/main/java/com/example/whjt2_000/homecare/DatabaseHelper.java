@@ -148,11 +148,11 @@ public final class DatabaseHelper extends SQLiteOpenHelper{
         String tmp = "";
         if (cursor.moveToFirst()) {
             do {
-                tmp = cursor.getString(0) + " | ";
-                tmp = tmp + cursor.getString(1) + " : ";
-                tmp += cursor.getString(2) + " ";
+                tmp = cursor.getString(1) + " | ";
+                tmp = tmp + cursor.getString(2) + " : ";
                 tmp += cursor.getString(3) + " ";
-                tmp += cursor.getString(4);
+                tmp += cursor.getString(4) + " ";
+                tmp += cursor.getString(5);
                 // Add stockanswer to list
                 patientinfo.add(tmp);
             } while (cursor.moveToNext());
@@ -174,11 +174,11 @@ public final class DatabaseHelper extends SQLiteOpenHelper{
         String tmp = "";
         if (cursor.moveToFirst()) {
             do {
-                tmp = cursor.getString(0) + " | ";
-                tmp = tmp + cursor.getString(1) + " : ";
-                tmp += cursor.getString(2) + " ";
+                tmp = cursor.getString(1) + " | ";
+                tmp = tmp + cursor.getString(2) + " : ";
                 tmp += cursor.getString(3) + " ";
-                tmp += cursor.getString(4);
+                tmp += cursor.getString(4) + " ";
+                tmp += cursor.getString(5);
                 patientInfo.add(tmp);
             } while (cursor.moveToNext());
         }
