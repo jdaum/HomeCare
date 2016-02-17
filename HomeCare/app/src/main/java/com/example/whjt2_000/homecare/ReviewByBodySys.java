@@ -47,10 +47,12 @@ public class ReviewByBodySys extends AppCompatActivity {
         dbHelper = DatabaseHelper.getInstance(ReviewByBodySys.this);
 
         spinner = (Spinner) findViewById(R.id.spinner);
+        textView = (TextView)findViewById(R.id.my_textview);
 
         Button button = (Button) findViewById(R.id.button);
         button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
+                textView.setText("");
                 bodySystem = spinner.getSelectedItem().toString();
                 showReviewInfo(v);
             }
@@ -62,8 +64,6 @@ public class ReviewByBodySys extends AppCompatActivity {
 
         //generate list
         bodySysAns = dbHelper.getPatientInformationForBodySystem(bodySystem);
-
-        textView = (TextView)findViewById(R.id.my_textview);
 
         String tmp =(String)textView.getText() + "\n";
         if (bodySysAns.size() == 0) {

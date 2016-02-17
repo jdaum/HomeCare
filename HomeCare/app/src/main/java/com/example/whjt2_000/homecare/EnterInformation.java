@@ -42,6 +42,7 @@ public class EnterInformation extends AppCompatActivity {
     private MyCustomCheckboxAdapter dataAdapter = null;
     private String name;
     private ArrayList<String> selected = new ArrayList<String>();
+    private EditText notes;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,12 +59,16 @@ public class EnterInformation extends AppCompatActivity {
         dbHelper = DatabaseHelper.getInstance(EnterInformation.this);
         saHelper = StockAnswerHelper.getInstance(EnterInformation.this);
 
+        //finds edittext
+        notes = (EditText) this.findViewById(R.id.infoText);
+
         //handle spinner
         spinner = (Spinner) findViewById(R.id.bodysystemspinner);
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
                 displayListView();
+                notes.setText("");
             }
 
             @Override
@@ -104,7 +109,6 @@ public class EnterInformation extends AppCompatActivity {
             List<String> results = data.getStringArrayListExtra(
                     RecognizerIntent.EXTRA_RESULTS);
             spokenText = results.get(0);
-            EditText notes = (EditText) this.findViewById(R.id.infoText);
             notes.setText(notes.getText() + spokenText + " ");
 
         }
@@ -114,7 +118,6 @@ public class EnterInformation extends AppCompatActivity {
 
     public void enterInformation(View view){
         // get the information from the edittext field
-        EditText notes = (EditText) this.findViewById(R.id.infoText);
         String message = notes.getText().toString();
 
         //get the selected body system from the spinner
@@ -123,6 +126,7 @@ public class EnterInformation extends AppCompatActivity {
         //add the patient information to the database
         if (message.length() != 0){
             dbHelper.addPatientInformation(name, bodysystem, message);
+            Log.d("message.length", Integer.toString(message.length()));
             Toast.makeText(getApplicationContext(),"Information saved for body system: " + bodysystem+".",Toast.LENGTH_LONG).show();
         }
         if (selected.size()!= 0){
@@ -136,6 +140,8 @@ public class EnterInformation extends AppCompatActivity {
                     dbHelper.addPatientInformation(name, bs, sa);
                 }
             }
+            selected.clear();
+            Log.d("selected.size", Integer.toString(selected.size()));
             Toast.makeText(getApplicationContext(),"Information saved for body system: " + bodysystem+".",Toast.LENGTH_LONG).show();
         }
         if (message.length()== 0 && selected.size()==0) {
