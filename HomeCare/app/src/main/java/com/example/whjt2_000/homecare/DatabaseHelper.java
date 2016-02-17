@@ -148,18 +148,41 @@ public final class DatabaseHelper extends SQLiteOpenHelper{
         String tmp = "";
         if (cursor.moveToFirst()) {
             do {
-                tmp = cursor.getString(1) + " | ";
-                tmp = tmp + cursor.getString(2) + " : ";
+                tmp = cursor.getString(0) + " | ";
+                tmp = tmp + cursor.getString(1) + " : ";
+                tmp += cursor.getString(2) + " ";
                 tmp += cursor.getString(3) + " ";
-                tmp += cursor.getString(4) + " ";
-                tmp += cursor.getString(5);
-
+                tmp += cursor.getString(4);
                 // Add stockanswer to list
                 patientinfo.add(tmp);
             } while (cursor.moveToNext());
         }
 
         return patientinfo;
+    }
+    public static ArrayList<String> getPatientInformationForBodySystem(String bodysystem) {
+        ArrayList<String> patientInfo = new ArrayList();
+
+        // select query
+        String query = "SELECT  * FROM " + DatabaseHelper.DatabaseEntry.TABLE_NAME + " WHERE " + DatabaseEntry.COLUMN_NAME_BODYSYSTEM + " = '" + bodysystem + "' ;";
+
+        // get reference of the database
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+        Cursor cursor = db.rawQuery(query, null);
+
+        // parse all results
+        String tmp = "";
+        if (cursor.moveToFirst()) {
+            do {
+                tmp = cursor.getString(0) + " | ";
+                tmp = tmp + cursor.getString(1) + " : ";
+                tmp += cursor.getString(2) + " ";
+                tmp += cursor.getString(3) + " ";
+                tmp += cursor.getString(4);
+                patientInfo.add(tmp);
+            } while (cursor.moveToNext());
+        }
+        return patientInfo;
     }
 
 

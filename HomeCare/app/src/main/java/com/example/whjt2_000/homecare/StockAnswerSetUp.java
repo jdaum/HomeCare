@@ -14,6 +14,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -68,23 +69,28 @@ public class StockAnswerSetUp extends AppCompatActivity {
                 EditText editText = (EditText) findViewById(R.id.new_stock_answer);
                 String message = editText.getText().toString();
 
-                String bodysystem = spinner.getSelectedItem().toString();
+                if(message.length() == 0){
+                    Toast.makeText(StockAnswerSetUp.this, "Please enter new stock answers!", Toast.LENGTH_SHORT).show();
+                } else {
 
-                long rowId = dbHelper.addStockAnswer(bodysystem,message);
+                    String bodysystem = spinner.getSelectedItem().toString();
 
-                //TODO: remove after completion of prototype
-                Log.d("StockAnswerSetUp", "onClick:" + rowId);
+                    long rowId = dbHelper.addStockAnswer(bodysystem, message);
 
-                // this line adds the data of your EditText and puts in your array
-                list.add(bodysystem+": "+message);
+                    //TODO: remove after completion of prototype
+                    Log.d("StockAnswerSetUp", "onClick:" + rowId);
 
-                // TODO: FOR DEBUGGING ONLY
-                //SQLiteDatabase db2 = dbHelper.getWritableDatabase();
-                //dbHelper.onUpgrade(db2, 1, 2);
+                    // this line adds the data of your EditText and puts in your array
+                    list.add(bodysystem + ": " + message);
+
+                    // TODO: FOR DEBUGGING ONLY
+                    //SQLiteDatabase db2 = dbHelper.getWritableDatabase();
+                    //dbHelper.onUpgrade(db2, 1, 2);
 
 
-                // next thing you have to do is check if your adapter has changed
-                adapter.notifyDataSetChanged();
+                    // next thing you have to do is check if your adapter has changed
+                    adapter.notifyDataSetChanged();
+                }
             }
         });
 

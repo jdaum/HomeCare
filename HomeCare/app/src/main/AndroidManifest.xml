@@ -3,17 +3,17 @@
     package="com.example.whjt2_000.homecare">
 
     <application
-        android:name="com.example.whjt2_000.homecare.User"
-        android:screenOrientation="portrait"
+        android:name=".User"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
+        android:screenOrientation="portrait"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
             android:name=".MainActivity"
-            android:screenOrientation="portrait"
             android:label="@string/app_name"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -23,9 +23,9 @@
         </activity>
         <activity
             android:name=".EnterInformation"
-            android:screenOrientation="portrait"
             android:label="@string/title_activity_enter_information"
             android:parentActivityName=".MainActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
@@ -33,9 +33,9 @@
         </activity>
         <activity
             android:name=".StockAnswerSetUp"
-            android:screenOrientation="portrait"
             android:label="@string/title_activity_set_up"
             android:parentActivityName=".MainActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
@@ -43,9 +43,9 @@
         </activity>
         <activity
             android:name=".ReviewInformation"
-            android:screenOrientation="portrait"
             android:label="@string/title_activity_review_information"
             android:parentActivityName=".MainActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
@@ -61,13 +61,23 @@
 
         <activity
             android:name=".ReviewDate"
-            android:screenOrientation="portrait"
             android:label="@string/title_activity_review_date"
             android:parentActivityName=".ReviewInformation"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.whjt2_000.homecare.ReviewInformation" />
+        </activity>
+        <activity
+            android:name=".ReviewByBodySys"
+            android:label="@string/title_activity_review_by_body_sys"
+            android:parentActivityName=".MainActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.whjt2_000.homecare.MainActivity" />
         </activity>
     </application>
 

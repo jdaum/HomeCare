@@ -44,7 +44,7 @@ public class ReviewDate extends AppCompatActivity {
         patientresults = DatabaseHelper.getPatientInformationTimeBlock(startDate, endDate);
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        String tmp ="";
+        String tmp =(String)dateText.getText() + "\n";
         if (patientresults.size() == 0) {
             Log.d("Returned information:", " empty");}
         for (String s : patientresults){

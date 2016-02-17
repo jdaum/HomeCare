@@ -96,6 +96,15 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    public void reviewInfoByBodySys(View view){
+        if (checkUserName()){
+            Toast.makeText(this, "Please sign in with your name!", Toast.LENGTH_SHORT).show();
+        }else{
+            Intent intent = new Intent(this, ReviewByBodySys.class);
+            startActivity(intent);
+        }
+    }
+
     private boolean checkUserName(){
         name = login.getText().toString();
         if (name.matches("")) {
