@@ -17,18 +17,11 @@
         android:layout_height="wrap_content"
         android:text="Search"
         android:id="@+id/ReviewButton"
-        android:layout_alignParentBottom="true"
+        android:layout_below="@+id/EndText"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
-        android:layout_marginBottom="44dp" />
+        android:layout_marginTop="108dp" />
 
-    <DatePicker
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/calendarView"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
 
     <Button
         style="?android:attr/buttonStyleSmall"
@@ -36,9 +29,9 @@
         android:layout_height="wrap_content"
         android:text="Select"
         android:id="@+id/StartButton"
-        android:layout_below="@+id/calendarView"
-        android:layout_toRightOf="@+id/StartText"
-        android:layout_toEndOf="@+id/StartText" />
+        android:layout_alignParentTop="true"
+        android:layout_alignLeft="@+id/ReviewButton"
+        android:layout_alignStart="@+id/ReviewButton" />
 
     <Button
         style="?android:attr/buttonStyleSmall"
@@ -47,14 +40,14 @@
         android:text="Select"
         android:id="@+id/EndButton"
         android:layout_alignBottom="@+id/EndText"
-        android:layout_toRightOf="@+id/EndText"
-        android:layout_toEndOf="@+id/EndText" />
+        android:layout_alignLeft="@+id/StartButton"
+        android:layout_alignStart="@+id/StartButton" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Start:"
+        android:text="Start Date:"
         android:id="@+id/StartText"
         android:layout_alignBottom="@+id/StartButton"
         android:layout_alignParentLeft="true"
@@ -64,10 +57,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="End:"
+        android:text="End Date:"
         android:id="@+id/EndText"
-        android:layout_alignTop="@+id/StartText"
-        android:layout_toRightOf="@+id/StartButton"
-        android:layout_toEndOf="@+id/StartButton" />
+        android:layout_below="@+id/StartText"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="86dp" />
 
 </RelativeLayout>
