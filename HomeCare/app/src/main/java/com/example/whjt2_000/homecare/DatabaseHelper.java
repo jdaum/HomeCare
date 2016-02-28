@@ -186,4 +186,47 @@ public final class DatabaseHelper extends SQLiteOpenHelper{
     }
 
 
+    public static ArrayList<String> getPatientInformation4h() {
+        ArrayList<String> patientInfo = new ArrayList();
+
+        //get the current data
+        Calendar c = Calendar.getInstance();
+        SimpleDateFormat df = new SimpleDateFormat("dd-MM-yyyy HH:mm");
+        String formattedDate = df.format(c.getTime());
+
+        //split formattedDate into a date and a time
+        String[] res = formattedDate.split(" ");
+        String date = res[0];
+        String time = res[1];
+
+        String[] res_time = time.split(":");
+        int hour = Integer.parseInt(res_time[0]) - 4;
+
+        String final_time = Integer.toString(hour)+":"+res_time[1];
+        Log.d("CHECK NEW TIME -4", hour + " and " + final_time);
+
+
+        // select query
+        String query = "SELECT  * FROM " + DatabaseHelper.DatabaseEntry.TABLE_NAME +
+                " WHERE " + DatabaseEntry.COLUMN_NAME_TIME + " > '" + final_time + "' AND " +DatabaseEntry.COLUMN_NAME_DATE + " = '" +date +"' ;";
+
+        // get reference of the database
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+        Cursor cursor = db.rawQuery(query, null);
+
+        // parse all results
+        String tmp = "";
+        if (cursor.moveToFirst()) {
+            do {
+                tmp = cursor.getString(1) + " | ";
+                tmp = tmp + cursor.getString(2) + " : ";
+                tmp += cursor.getString(3) + " ";
+                tmp += cursor.getString(4) + " ";
+                tmp += cursor.getString(5);
+                patientInfo.add(tmp);
+            } while (cursor.moveToNext());
+        }
+        return patientInfo;
+    }
+
 }

@@ -49,10 +49,18 @@
         android:layout_below ="@id/review_info"
         android:onClick="reviewInfoByBodySys"/>
 
+    <Button android:id="@+id/review_4h"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:text="@string/review_4h"
+        android:layout_below ="@id/search_body_sys"
+        android:onClick="review4h"/>
+
     <Button android:id="@+id/profile"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_below = "@+id/search_body_sys"
+        android:layout_below = "@+id/review_4h"
         android:text="@string/profile"
         android:onClick="stockAnswerSetUp"/>
 
