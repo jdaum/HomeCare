@@ -44,12 +44,12 @@
         <activity
             android:name=".ReviewInformation"
             android:label="@string/title_activity_review_information"
-            android:parentActivityName=".MainActivity"
+            android:parentActivityName=".SearchOptions"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.whjt2_000.homecare.MainActivity" />
+                android:value="com.example.whjt2_000.homecare.SearchOptions" />
         </activity>
         <!--
              ATTENTION: This was auto-generated to add Google Play services to your project for
@@ -62,7 +62,7 @@
         <activity
             android:name=".ReviewDate"
             android:label="@string/title_activity_review_date"
-            android:parentActivityName=".ReviewInformation"
+            android:parentActivityName=".SearchOptions"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" >
             <meta-data
@@ -72,21 +72,27 @@
         <activity
             android:name=".ReviewByBodySys"
             android:label="@string/title_activity_review_by_body_sys"
-            android:parentActivityName=".MainActivity"
+            android:parentActivityName=".SearchOptions"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.whjt2_000.homecare.MainActivity" />
+                android:value="com.example.whjt2_000.homecare.SearchOptions" />
         </activity>
         <activity
             android:name=".Review4h"
             android:label="@string/title_activity_review4h"
-            android:parentActivityName=".MainActivity"
+            android:parentActivityName=".SearchOptions"
             android:theme="@style/AppTheme.NoActionBar" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.whjt2_000.homecare.MainActivity" />
+                android:value="com.example.whjt2_000.homecare.SearchOptions" />
+        </activity>
+        <activity
+            android:name=".SearchOptions"
+            android:label="@string/title_activity_search_options"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/AppTheme.NoActionBar" >
         </activity>
     </application>
 

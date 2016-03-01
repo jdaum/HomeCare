@@ -78,14 +78,16 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    public void reviewInformation(View view){
+
+    public void searchInfo(View view){
         if (checkUserName()){
             Toast.makeText(this, "Please sign in with your name!", Toast.LENGTH_SHORT).show();
         }else{
-            Intent intent = new Intent(this, ReviewInformation.class);
+            Intent intent = new Intent(this, SearchOptions.class);
             startActivity(intent);
         }
     }
+
 
     public void stockAnswerSetUp(View view){
         if (checkUserName()){
@@ -96,23 +98,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    public void reviewInfoByBodySys(View view){
-        if (checkUserName()){
-            Toast.makeText(this, "Please sign in with your name!", Toast.LENGTH_SHORT).show();
-        }else{
-            Intent intent = new Intent(this, ReviewByBodySys.class);
-            startActivity(intent);
-        }
-    }
 
-    public void review4h(View view){
-        if (checkUserName()){
-            Toast.makeText(this, "Please sign in with your name!", Toast.LENGTH_SHORT).show();
-        }else{
-            Intent intent = new Intent(this, Review4h.class);
-            startActivity(intent);
-        }
-    }
 
     private boolean checkUserName(){
         name = login.getText().toString();

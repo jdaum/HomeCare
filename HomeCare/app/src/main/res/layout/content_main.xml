@@ -30,37 +30,23 @@
     <Button android:id="@+id/new_info"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/review_info"
+        android:layout_above="@+id/search"
         android:text="@string/new_info"
         android:onClick="enterInformation" />
 
-    <Button android:id="@+id/review_info"
+    <Button android:id="@+id/search"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
+        android:layout_above="@+id/review_info"
         android:layout_centerInParent="true"
-        android:text="@string/review_info"
-        android:onClick="reviewInformation" />
+        android:text="@string/search"
+        android:onClick="searchInfo" />
 
-    <Button android:id="@+id/search_body_sys"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:text="@string/search_body_sys"
-        android:layout_below ="@id/review_info"
-        android:onClick="reviewInfoByBodySys"/>
-
-    <Button android:id="@+id/review_4h"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:text="@string/review_4h"
-        android:layout_below ="@id/search_body_sys"
-        android:onClick="review4h"/>
 
     <Button android:id="@+id/profile"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_below = "@+id/review_4h"
+        android:layout_below = "@+id/search"
         android:text="@string/profile"
         android:onClick="stockAnswerSetUp"/>
 
