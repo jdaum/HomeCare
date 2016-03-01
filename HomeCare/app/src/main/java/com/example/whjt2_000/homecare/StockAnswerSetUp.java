@@ -77,16 +77,12 @@ public class StockAnswerSetUp extends AppCompatActivity {
 
                     long rowId = dbHelper.addStockAnswer(bodysystem, message);
 
-                    //TODO: remove after completion of prototype
-                    Log.d("StockAnswerSetUp", "onClick:" + rowId);
+                    Toast.makeText(StockAnswerSetUp.this, "Your stockanswer was saved for bodysystem: " + bodysystem, Toast.LENGTH_SHORT).show();
+
+                    editText.setText("");
 
                     // this line adds the data of your EditText and puts in your array
                     list.add(bodysystem + ": " + message);
-
-                    // TODO: FOR DEBUGGING ONLY
-                    //SQLiteDatabase db2 = dbHelper.getWritableDatabase();
-                    //dbHelper.onUpgrade(db2, 1, 2);
-
 
                     // next thing you have to do is check if your adapter has changed
                     adapter.notifyDataSetChanged();

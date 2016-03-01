@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -8,9 +8,11 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
+    android:orientation="vertical"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="com.example.whjt2_000.homecare.EnterInformation"
     tools:showIn="@layout/activity_enter_information2">
+
 
     <Spinner
         android:id="@+id/bodysystemspinner"
@@ -20,17 +22,33 @@
         android:entries="@array/bodysystem_array"
         />
 
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.1"
+        >
+
     <ListView android:id="@+id/listView1"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below = "@+id/bodysystemspinner"
         />
 
+    </LinearLayout>
+
+
+    <RelativeLayout
+        android:orientation="horizontal"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content">
+
         <EditText
             android:id="@+id/infoText"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/listView1"/>
+            android:layout_height="wrap_content" />
+
 
         <Button
             android:layout_width="wrap_content"
@@ -51,5 +69,6 @@
             android:layout_alignParentLeft = "true"
             android:layout_toRightOf="@+id/enter_button"
             android:src="@android:drawable/ic_btn_speak_now" />
+    </RelativeLayout>
 
-</RelativeLayout>
+</LinearLayout>
