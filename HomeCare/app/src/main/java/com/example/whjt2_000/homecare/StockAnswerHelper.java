@@ -124,9 +124,6 @@ public final class StockAnswerHelper extends SQLiteOpenHelper{
         String tmp = "";
         if (cursor.moveToFirst()) {
             do {
-                Log.d("String0", cursor.getString(0));
-                Log.d("String1", cursor.getString(1));
-                Log.d("String2", cursor.getString(2));
                 tmp = cursor.getString(1) + ": ";
                 tmp = tmp + cursor.getString(2);
 
@@ -138,6 +135,12 @@ public final class StockAnswerHelper extends SQLiteOpenHelper{
     }
 
     public void deleteStockAnswer(String answer){
+        //escape '
+
+        answer = answer.replaceAll("'","\"");
+
+        Log.d("DELETESTOCKANSWER", "deleteStockAnswer: " + answer);
+
         String split[] = answer.split(":");
         String bodysystem = split[0];
         String stockanswer = split[1].substring(1);
