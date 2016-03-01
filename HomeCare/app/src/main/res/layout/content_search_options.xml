@@ -18,14 +18,14 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:text="@string/review_info"
-        android:onClick="reviewInformation" />
+        android:onClick="reviewInformation"
+        android:layout_above="@+id/search_body_sys"/>
 
     <Button android:id="@+id/search_body_sys"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
         android:text="@string/search_body_sys"
-        android:layout_below ="@id/review_info"
         android:onClick="reviewInfoByBodySys"/>
 
     <Button android:id="@+id/review_4h"

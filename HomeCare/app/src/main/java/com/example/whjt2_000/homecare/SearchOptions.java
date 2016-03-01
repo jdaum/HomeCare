@@ -17,6 +17,7 @@ public class SearchOptions extends AppCompatActivity {
         setContentView(R.layout.activity_search_options);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
     }
 
