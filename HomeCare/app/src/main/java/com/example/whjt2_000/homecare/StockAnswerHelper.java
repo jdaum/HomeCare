@@ -3,6 +3,7 @@ package com.example.whjt2_000.homecare;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
+import android.database.DatabaseUtils;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.provider.BaseColumns;
@@ -90,6 +91,7 @@ public final class StockAnswerHelper extends SQLiteOpenHelper{
 
     // adds a new stock answer to the database
     public long addStockAnswer(String bodysystem, String stockanswer){
+
         // Gets the data repository in write mode
         SQLiteDatabase db = dbHelper.getWritableDatabase();
 
@@ -137,7 +139,9 @@ public final class StockAnswerHelper extends SQLiteOpenHelper{
     public void deleteStockAnswer(String answer){
         //escape '
 
-        answer = answer.replaceAll("'","\"");
+        Log.d("BEFORE", "deleteStockAnswer: " + answer);
+        answer = DatabaseUtils.sqlEscapeString(answer);
+        answer = answer.substring(1, answer.length()-1);
 
         Log.d("DELETESTOCKANSWER", "deleteStockAnswer: " + answer);
 
