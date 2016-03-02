@@ -150,6 +150,17 @@ public class EnterInformation extends AppCompatActivity {
             selected.clear();
             Log.d("selected.size", Integer.toString(selected.size()));
             Toast.makeText(getApplicationContext(),"Information saved for body system: " + bodysystem+".",Toast.LENGTH_LONG).show();
+
+            uncheckCheckBox();
+        }
+    }
+
+    private void uncheckCheckBox(){
+        ListView lv = (ListView) findViewById(R.id.listView1);
+        for(int i = 0; i < lv.getChildCount(); i++){
+            ViewGroup item = (ViewGroup) lv.getChildAt(i);
+            CheckBox cb = (CheckBox) item.findViewById(R.id.checkBox1);
+            cb.setChecked(false);
         }
     }
 

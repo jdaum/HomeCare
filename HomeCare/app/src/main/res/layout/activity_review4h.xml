@@ -22,6 +22,6 @@
     </android.support.design.widget.AppBarLayout>
 
     <include layout="@layout/content_review4h" />
-    
+
 
 </android.support.design.widget.CoordinatorLayout>
