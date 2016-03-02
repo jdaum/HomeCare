@@ -132,6 +132,9 @@ public class EnterInformation extends AppCompatActivity {
             dbHelper.addPatientInformation(name, bodysystem, message);
             Log.d("message.length", Integer.toString(message.length()));
             Toast.makeText(getApplicationContext(),"Information saved for body system: " + bodysystem+".",Toast.LENGTH_LONG).show();
+
+            // clear edittext field after added information to database
+            notes.setText("");
         }
         if (selected.size()!= 0){
             for (String s: selected){

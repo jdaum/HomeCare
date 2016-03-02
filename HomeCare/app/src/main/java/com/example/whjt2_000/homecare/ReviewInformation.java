@@ -76,6 +76,7 @@ public class ReviewInformation extends AppCompatActivity {
                                 startDay = dayOfMonth;
                             }
                         }, startYear, startMonth, startDay);
+
                 startDateDialog.show();
             }
         });

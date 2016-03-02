@@ -47,7 +47,10 @@
         <EditText
             android:id="@+id/infoText"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:maxLines="4"
+            android:scrollbars = "vertical"
+            />
 
 
         <Button
