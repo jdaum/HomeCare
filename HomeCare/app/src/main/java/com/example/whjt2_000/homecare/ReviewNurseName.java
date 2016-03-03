@@ -38,7 +38,10 @@ public class ReviewNurseName extends AppCompatActivity {
 
         dbHelper = DatabaseHelper.getInstance(ReviewNurseName.this);
 
+        String curNurseName =((User) getApplicationContext()).getName();
         names = dbHelper.getNurseNames();
+        if(!names.contains(curNurseName))
+            names.add(curNurseName);
 
         name_sp = (Spinner) findViewById(R.id.name_spinner);
         ArrayAdapter<String> name_adapter = new ArrayAdapter<String>(this,
@@ -54,8 +57,12 @@ public class ReviewNurseName extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 textView.setText("");
-                name = name_sp.getSelectedItem().toString();
-                showReviewInfo(v);
+                if(name_sp.getSelectedItem() == null){
+                    Toast.makeText(ReviewNurseName.this, "There's no information.", Toast.LENGTH_SHORT).show();
+                } else {
+                    name = name_sp.getSelectedItem().toString();
+                    showReviewInfo(v);
+                }
             }
         });
 
