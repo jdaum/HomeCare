@@ -30,5 +30,7 @@
     <string name="title_activity_review4h">Review Last 4 Hours</string>
     <string name="title_activity_search_options">SearchOptions</string>
     <string name="search">Search Information</string>
+    <string name="search_name">Search by Nurse Name</string>
+    <string name="title_activity_review_nurse_name">ReviewNurseName</string>
 
 </resources>

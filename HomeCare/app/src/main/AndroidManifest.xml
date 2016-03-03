@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.whjt2_000.homecare" >
+    package="com.example.whjt2_000.homecare">
 
     <application
         android:name=".User"
@@ -9,12 +9,12 @@
         android:label="@string/app_name"
         android:screenOrientation="portrait"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme" >
+        android:theme="@style/AppTheme">
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" >
+            android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -26,7 +26,7 @@
             android:label="@string/title_activity_enter_information"
             android:parentActivityName=".MainActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" >
+            android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.whjt2_000.homecare.MainActivity" />
@@ -36,7 +36,7 @@
             android:label="@string/title_activity_set_up"
             android:parentActivityName=".MainActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" >
+            android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.whjt2_000.homecare.MainActivity" />
@@ -46,7 +46,7 @@
             android:label="@string/title_activity_review_information"
             android:parentActivityName=".SearchOptions"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" >
+            android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.whjt2_000.homecare.SearchOptions" />
@@ -64,7 +64,7 @@
             android:label="@string/title_activity_review_date"
             android:parentActivityName=".SearchOptions"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" >
+            android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.whjt2_000.homecare.ReviewInformation" />
@@ -74,7 +74,7 @@
             android:label="@string/title_activity_review_by_body_sys"
             android:parentActivityName=".SearchOptions"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" >
+            android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.whjt2_000.homecare.SearchOptions" />
@@ -83,7 +83,7 @@
             android:name=".Review4h"
             android:label="@string/title_activity_review4h"
             android:parentActivityName=".SearchOptions"
-            android:theme="@style/AppTheme.NoActionBar" >
+            android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.whjt2_000.homecare.SearchOptions" />
@@ -92,7 +92,15 @@
             android:name=".SearchOptions"
             android:label="@string/title_activity_search_options"
             android:parentActivityName=".MainActivity"
-            android:theme="@style/AppTheme.NoActionBar" >
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity
+            android:name=".ReviewNurseName"
+            android:label="@string/title_activity_review_nurse_name"
+            android:parentActivityName=".SearchOptions"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.whjt2_000.homecare.SearchOptions" />
         </activity>
     </application>
 

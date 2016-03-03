@@ -12,6 +12,7 @@ import android.util.Log;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.HashSet;
 import java.util.Random;
 
 /**
@@ -94,6 +95,7 @@ public final class DatabaseHelper extends SQLiteOpenHelper{
         onUpgrade(db, oldVersion, newVersion);
     }
 
+
     public long addPatientInformation(String name, String bodysystem, String stockanswer){
         // Gets the data repository in write mode
         SQLiteDatabase db = dbHelper.getWritableDatabase();
@@ -160,6 +162,7 @@ public final class DatabaseHelper extends SQLiteOpenHelper{
 
         return patientinfo;
     }
+
     public static ArrayList<String> getPatientInformationForBodySystem(String bodysystem) {
         ArrayList<String> patientInfo = new ArrayList();
 
@@ -227,6 +230,51 @@ public final class DatabaseHelper extends SQLiteOpenHelper{
             } while (cursor.moveToNext());
         }
         return patientInfo;
+    }
+
+    public static ArrayList<String> getPatientInformationForNurseName(String name) {
+        ArrayList<String> patientInfo = new ArrayList();
+
+        // select query
+        String query = "SELECT  * FROM " + DatabaseHelper.DatabaseEntry.TABLE_NAME + " WHERE " + DatabaseEntry.COLUMN_NAME_NURSE + " = '" + name + "' ;";
+
+        // get reference of the database
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+        Cursor cursor = db.rawQuery(query, null);
+
+        // parse all results
+        String tmp = "";
+        if (cursor.moveToFirst()) {
+            do {
+                tmp = cursor.getString(1) + " | ";
+                tmp = tmp + cursor.getString(2) + " : ";
+                tmp += cursor.getString(3) + " ";
+                tmp += cursor.getString(4) + " ";
+                tmp += cursor.getString(5);
+                patientInfo.add(tmp);
+            } while (cursor.moveToNext());
+        }
+        return patientInfo;
+    }
+
+    public static ArrayList<String> getNurseNames(){
+        ArrayList<String> names = new ArrayList<String>();
+
+        String query = "SELECT " + DatabaseEntry.COLUMN_NAME_NURSE +" FROM " + DatabaseEntry.TABLE_NAME;
+
+        // get reference of the database
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+        Cursor cursor = db.rawQuery(query, null);
+
+        // parse all results
+        String tmp = "";
+        if (cursor.moveToFirst()) {
+            do {
+                tmp = cursor.getString(0);
+                if (!names.contains(tmp)) names.add(tmp);
+            } while (cursor.moveToNext());
+        }
+        return names;
     }
 
 }

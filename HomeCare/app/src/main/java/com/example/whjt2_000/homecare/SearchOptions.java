@@ -36,4 +36,9 @@ public class SearchOptions extends AppCompatActivity {
             startActivity(intent);
     }
 
+    public void reviewNurseName(View view){
+        Intent intent = new Intent(this, ReviewNurseName.class);
+        startActivity(intent);
+    }
+
 }

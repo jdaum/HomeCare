@@ -13,7 +13,7 @@
     tools:context="com.example.whjt2_000.homecare.ReviewByBodySys"
     tools:showIn="@layout/activity_review_by_body_sys">
 
-        <RelativeLayout
+    <RelativeLayout
             android:orientation="horizontal"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
@@ -25,14 +25,16 @@
                 android:drawSelectorOnTop="true"
                 android:entries="@array/bodysystem_array"
                 android:layout_alignTop="@+id/button"
-                android:layout_alignBottom="@+id/button" />
+                android:layout_alignBottom="@+id/button"
+                android:minWidth="230dp"/>
 
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Search"
                 android:id="@+id/button"
-                android:layout_toRightOf="@+id/spinner"/>
+                android:layout_toRightOf="@+id/spinner"
+                android:layout_marginLeft="20dp"/>
         </RelativeLayout>
 
         <LinearLayout

@@ -24,15 +24,22 @@
     <Button android:id="@+id/search_body_sys"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
         android:text="@string/search_body_sys"
-        android:onClick="reviewInfoByBodySys"/>
+        android:onClick="reviewInfoByBodySys"
+        android:layout_above="@+id/search_name"/>
+
+    <Button android:id="@+id/search_name"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:text="@string/search_name"
+        android:onClick="reviewNurseName"/>
 
     <Button android:id="@+id/review_4h"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:text="@string/review_4h"
-        android:layout_below ="@id/search_body_sys"
+        android:layout_below ="@id/search_name"
         android:onClick="review4h"/>
 
 
