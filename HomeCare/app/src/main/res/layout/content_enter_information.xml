@@ -50,6 +50,7 @@
             android:layout_height="wrap_content"
             android:maxLines="4"
             android:scrollbars = "vertical"
+            android:hint="Please type your notes here."
             />
 
 
