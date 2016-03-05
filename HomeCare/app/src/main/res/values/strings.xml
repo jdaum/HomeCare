@@ -28,9 +28,9 @@
     <string name="title_activity_review_by_body_sys">Search By Body System</string>
     <string name="review_4h">Review 4h Shift</string>
     <string name="title_activity_review4h">Review Last 4 Hours</string>
-    <string name="title_activity_search_options">SearchOptions</string>
+    <string name="title_activity_search_options">Search Options</string>
     <string name="search">Search Information</string>
     <string name="search_name">Search by Nurse Name</string>
-    <string name="title_activity_review_nurse_name">ReviewNurseName</string>
+    <string name="title_activity_review_nurse_name">Search by Nurse Name</string>
 
 </resources>
