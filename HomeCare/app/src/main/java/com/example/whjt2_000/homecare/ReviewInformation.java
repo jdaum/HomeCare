@@ -24,16 +24,13 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 public class ReviewInformation extends AppCompatActivity {
-    CalendarView date;
-    int startYear, startMonth, startDay;
-    boolean setStartDay, setEndDay;
-    int endYear, endMonth, endDay;
-    private TextView startText, endText, showStartText, showEndText;
+
+    private int startYear, startMonth, startDay;
+    private boolean setStartDay, setEndDay;
+    private int endYear, endMonth, endDay;
+    private TextView showStartText, showEndText;
     private DatePickerDialog startDateDialog;
     private DatePickerDialog endDateDialog;
-
-    private SimpleDateFormat dateFormatter;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,8 +39,6 @@ public class ReviewInformation extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        startText = (TextView) findViewById(R.id.StartText);
-        endText = (TextView) findViewById(R.id.EndText);
         showStartText = (TextView) findViewById(R.id.showStartDate);
         showEndText = (TextView) findViewById(R.id.showEndDate);
 
@@ -134,18 +129,13 @@ public class ReviewInformation extends AppCompatActivity {
             intent.putExtra("startYear", startYear);
             intent.putExtra("startMonth", startMonth+1);
             intent.putExtra("startDay", startDay);
-
             intent.putExtra("endYear", endYear);
             intent.putExtra("endMonth", endMonth+1);
             intent.putExtra("endDay", endDay);
-
-
             startActivity(intent);
         }
         else {
             Toast.makeText(this, "Please select valid start and end date.", Toast.LENGTH_SHORT).show();
         }
     }
-
-
 }

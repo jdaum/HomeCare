@@ -49,7 +49,6 @@ public final class StockAnswerHelper extends SQLiteOpenHelper{
     /* Inner class that defines the table contents */
     public static abstract class DatabaseEntry implements BaseColumns {
         public static final String TABLE_NAME = "stockanswers";
-        //public static final String COLUMN_NAME_ENTRY_ID = "entryid";
         public static final String COLUMN_NAME_BODYSYSTEM = "bodysystem";
         public static final String COLUMN_NAME_STOCKANSWER = "stockanswer";
     }
@@ -62,7 +61,6 @@ public final class StockAnswerHelper extends SQLiteOpenHelper{
     private static final String SQL_CREATE_ENTRIES =
             "CREATE TABLE " + DatabaseEntry.TABLE_NAME + " (" +
                     DatabaseEntry._ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
-                    //DatabaseEntry.COLUMN_NAME_ENTRY_ID + TEXT_TYPE + COMMA_SEP +
                     DatabaseEntry.COLUMN_NAME_BODYSYSTEM + TEXT_TYPE + COMMA_SEP +
                     DatabaseEntry.COLUMN_NAME_STOCKANSWER + TEXT_TYPE +
                     " )";
@@ -70,12 +68,9 @@ public final class StockAnswerHelper extends SQLiteOpenHelper{
     private static final String SQL_DELETE_ENTRIES =
             "DROP TABLE IF EXISTS " + DatabaseEntry.TABLE_NAME;
 
-
-
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(SQL_CREATE_ENTRIES);
     }
-
 
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         // This database is only a cache for online data, so its upgrade policy is
@@ -84,20 +79,16 @@ public final class StockAnswerHelper extends SQLiteOpenHelper{
         onCreate(db);
     }
 
-
     public void onDowngrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         onUpgrade(db, oldVersion, newVersion);
     }
 
-    // adds a new stock answer to the database
     public long addStockAnswer(String bodysystem, String stockanswer){
-
         // Gets the data repository in write mode
         SQLiteDatabase db = dbHelper.getWritableDatabase();
 
         // Create a new map of values, where column names are the keys
         ContentValues values = new ContentValues();
-        //values.put(DatabaseEntry.COLUMN_NAME_ENTRY_ID, new Random().nextInt() + 1);
         values.put(DatabaseEntry.COLUMN_NAME_BODYSYSTEM, bodysystem);
         values.put(DatabaseEntry.COLUMN_NAME_STOCKANSWER, stockanswer);
 
@@ -108,7 +99,6 @@ public final class StockAnswerHelper extends SQLiteOpenHelper{
 
         // close database transaction
         db.close();
-
         return rowId;
     }
 
@@ -128,7 +118,6 @@ public final class StockAnswerHelper extends SQLiteOpenHelper{
             do {
                 tmp = cursor.getString(1) + ": ";
                 tmp = tmp + cursor.getString(2);
-
                 // Add stockanswer to list
                 stockanswers.add(tmp);
             } while (cursor.moveToNext());
@@ -138,12 +127,8 @@ public final class StockAnswerHelper extends SQLiteOpenHelper{
 
     public void deleteStockAnswer(String answer){
         //escape '
-
-        Log.d("BEFORE", "deleteStockAnswer: " + answer);
         answer = DatabaseUtils.sqlEscapeString(answer);
         answer = answer.substring(1, answer.length()-1);
-
-        Log.d("DELETESTOCKANSWER", "deleteStockAnswer: " + answer);
 
         String split[] = answer.split(":");
         String bodysystem = split[0];
@@ -151,7 +136,8 @@ public final class StockAnswerHelper extends SQLiteOpenHelper{
 
         //compute both parts of the SQL query
         String fromquery = "DELETE FROM " + StockAnswerHelper.DatabaseEntry.TABLE_NAME;
-        String wherequery = " WHERE "+ StockAnswerHelper.DatabaseEntry.COLUMN_NAME_BODYSYSTEM + " = " + "'"+bodysystem+"'" +" AND "+ DatabaseEntry.COLUMN_NAME_STOCKANSWER + " = " + "'" +stockanswer+"' ;" ;
+        String wherequery = " WHERE "+ StockAnswerHelper.DatabaseEntry.COLUMN_NAME_BODYSYSTEM + " = " + "'"+bodysystem+"'" +
+                " AND "+ DatabaseEntry.COLUMN_NAME_STOCKANSWER + " = " + "'" +stockanswer+"' ;" ;
 
         //concat the query
         String query = fromquery + wherequery;

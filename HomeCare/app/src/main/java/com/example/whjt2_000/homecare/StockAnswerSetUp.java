@@ -45,9 +45,6 @@ public class StockAnswerSetUp extends AppCompatActivity {
         list = new ArrayList<String>();
         list = dbHelper.getAllStockAnswers();
 
-
-        //read out stock answers here and add them to the list
-
         Button add_btn= (Button)findViewById(R.id.add_btn);
 
         //instantiate custom adapter
@@ -72,26 +69,15 @@ public class StockAnswerSetUp extends AppCompatActivity {
                 if(message.length() == 0){
                     Toast.makeText(StockAnswerSetUp.this, "Please enter a new stock answer.", Toast.LENGTH_SHORT).show();
                 } else {
-
                     String bodysystem = spinner.getSelectedItem().toString();
-
                     long rowId = dbHelper.addStockAnswer(bodysystem, message);
-
                     Toast.makeText(StockAnswerSetUp.this, "Your stockanswer was saved for bodysystem: " + bodysystem, Toast.LENGTH_SHORT).show();
-
                     editText.setText("");
-
-                    // this line adds the data of your EditText and puts in your array
                     list.add(bodysystem + ": " + message);
-
                     // next thing you have to do is check if your adapter has changed
                     adapter.notifyDataSetChanged();
                 }
             }
         });
-
-
     }
-
-
 }

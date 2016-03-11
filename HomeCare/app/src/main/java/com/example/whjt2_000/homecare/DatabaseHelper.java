@@ -49,7 +49,6 @@ public final class DatabaseHelper extends SQLiteOpenHelper{
     /* Inner class that defines the table contents */
     public static abstract class DatabaseEntry implements BaseColumns {
         public static final String TABLE_NAME = "narrativenotes";
-        //public static final String COLUMN_NAME_ENTRY_ID = "entryid";
         public static final String COLUMN_NAME_NURSE = "nursename";
         public static final String COLUMN_NAME_BODYSYSTEM = "bodysystem";
         public static final String COLUMN_NAME_STOCKANSWER = "stockanswer";
@@ -65,7 +64,6 @@ public final class DatabaseHelper extends SQLiteOpenHelper{
     private static final String SQL_CREATE_ENTRIES =
             "CREATE TABLE " + DatabaseEntry.TABLE_NAME + " (" +
                     DatabaseEntry._ID + " INTEGER PRIMARY KEY," +
-                    //DatabaseEntry.COLUMN_NAME_ENTRY_ID + TEXT_TYPE + COMMA_SEP +
                     DatabaseEntry.COLUMN_NAME_NURSE + TEXT_TYPE + COMMA_SEP +
                     DatabaseEntry.COLUMN_NAME_BODYSYSTEM + TEXT_TYPE + COMMA_SEP +
                     DatabaseEntry.COLUMN_NAME_STOCKANSWER + TEXT_TYPE + COMMA_SEP +
@@ -84,8 +82,6 @@ public final class DatabaseHelper extends SQLiteOpenHelper{
 
 
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        // This database is only a cache for online data, so its upgrade policy is
-        // to simply to discard the data and start over
         db.execSQL(SQL_DELETE_ENTRIES);
         onCreate(db);
     }
@@ -129,11 +125,6 @@ public final class DatabaseHelper extends SQLiteOpenHelper{
         return rowId;
     }
 
-
-    /**
-     * Not working yet
-     * @return
-     */
     public static ArrayList<String> getPatientInformationTimeBlock(String start, String end) {
         ArrayList<String> patientinfo = new ArrayList();
 

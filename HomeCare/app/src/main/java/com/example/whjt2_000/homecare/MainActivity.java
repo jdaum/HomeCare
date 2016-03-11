@@ -21,11 +21,8 @@ import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
-    private DatabaseHelper db;
     private EditText login;
     private String name;
-    private Button enterInfo;
-    private Button reviewInfo;
     private User username;
 
     @Override
@@ -37,14 +34,9 @@ public class MainActivity extends AppCompatActivity {
 
         //find the editText and the buttons
         login = (EditText) findViewById(R.id.login);
-        enterInfo = (Button) findViewById(R.id.new_info);
-        reviewInfo = (Button) findViewById(R.id.review_info);
         username = (User) getApplicationContext();
 
         login.setText(username.getName());
-
-        //retrieve the database
-        db = DatabaseHelper.getInstance(MainActivity.this);
     }
 
     @Override
@@ -78,7 +70,6 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-
     public void searchInfo(View view){
         if (checkUserName()){
             Toast.makeText(this, "Please sign in with your name!", Toast.LENGTH_SHORT).show();
@@ -88,7 +79,6 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-
     public void stockAnswerSetUp(View view){
         if (checkUserName()){
             Toast.makeText(this, "Please sign in with your name!", Toast.LENGTH_SHORT).show();
@@ -97,8 +87,6 @@ public class MainActivity extends AppCompatActivity {
             startActivity(intent);
         }
     }
-
-
 
     private boolean checkUserName(){
         name = login.getText().toString();

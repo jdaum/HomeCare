@@ -91,26 +91,26 @@ public class EnterInformation extends AppCompatActivity {
         displayListView();
     }
 
-    // Create an intent that can start the Speech Recognizer activity
     private void displaySpeechRecognizer() {
         Intent intent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
         intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL,
                 RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
-    // Start the activity, the intent will be populated with the speech text
+        // Start the activity, the intent will be populated with the speech text
         startActivityForResult(intent, SPEECH_REQUEST_CODE);
     }
 
-    // This callback is invoked when the Speech Recognizer returns.
-    // This is where you process the intent and extract the speech text from the intent.
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode,
                                     Intent data) {
+        // This callback is invoked when the Speech Recognizer returns.
+        // This is where you process the intent and extract the speech text from the intent.
         if (requestCode == SPEECH_REQUEST_CODE && resultCode == RESULT_OK) {
             List<String> results = data.getStringArrayListExtra(
                     RecognizerIntent.EXTRA_RESULTS);
             spokenText = results.get(0);
+            //put the spoken text into the edittext
             notes.setText(notes.getText() + spokenText + " ");
-
         }
         super.onActivityResult(requestCode, resultCode, data);
     }
@@ -123,6 +123,7 @@ public class EnterInformation extends AppCompatActivity {
         //get the selected body system from the spinner
         String bodysystem = spinner.getSelectedItem().toString();
 
+        //trying to save without a text or any selected stock answer
         if (message.length()== 0 && selected.size()==0) {
             Toast.makeText(getApplicationContext(),"Please enter patient information.",Toast.LENGTH_LONG).show();
         }
@@ -130,9 +131,7 @@ public class EnterInformation extends AppCompatActivity {
         //add the patient information to the database
         if (message.length() != 0){
             dbHelper.addPatientInformation(name, bodysystem, message);
-            Log.d("message.length", Integer.toString(message.length()));
             Toast.makeText(getApplicationContext(),"Information saved for body system: " + bodysystem+".",Toast.LENGTH_LONG).show();
-
             // clear edittext field after added information to database
             notes.setText("");
         }
@@ -148,14 +147,13 @@ public class EnterInformation extends AppCompatActivity {
                 }
             }
             selected.clear();
-            Log.d("selected.size", Integer.toString(selected.size()));
             Toast.makeText(getApplicationContext(),"Information saved for body system: " + bodysystem+".",Toast.LENGTH_LONG).show();
-
             uncheckCheckBox();
         }
     }
 
     private void uncheckCheckBox(){
+        //unchecks a selected stock answer
         ListView lv = (ListView) findViewById(R.id.listView1);
         for(int i = 0; i < lv.getChildCount(); i++){
             ViewGroup item = (ViewGroup) lv.getChildAt(i);
@@ -212,7 +210,6 @@ public class EnterInformation extends AppCompatActivity {
         public View getView(int position, View convertView, ViewGroup parent) {
 
             ViewHolder holder = null;
-            //Log.v("ConvertView", String.valueOf(position));
 
             if (convertView == null) {
                 LayoutInflater vi = (LayoutInflater)getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -241,11 +238,9 @@ public class EnterInformation extends AppCompatActivity {
             }
 
             String stockanswer = stockanswers.get(position);
-            //TODO: currently more like a hack, check maybe later for a better implementation
             holder.code.setText("");
             holder.name.setText(stockanswer);
             return convertView;
-
         }
     }
 
