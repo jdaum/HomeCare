@@ -193,10 +193,14 @@ public final class DatabaseHelper extends SQLiteOpenHelper{
         String date = res[0];
         String time = res[1];
 
+        String final_time = "";
         String[] res_time = time.split(":");
         int hour = Integer.parseInt(res_time[0]) - 4;
 
-        String final_time = Integer.toString(hour)+":"+res_time[1];
+        if (hour < 10)
+            final_time = "0" + Integer.toString(hour) + ":" + res_time[1];
+        else
+            final_time = Integer.toString(hour)+":"+res_time[1];
         Log.d("CHECK NEW TIME -4", hour + " and " + final_time);
 
 
